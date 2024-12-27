@@ -10,7 +10,7 @@ const Hero = () => {
             <p className='text-5xl uppercase my-3'>Front-end Developer</p>
          </div>
          <div className='w-full h-full absolute top-0 left-0'>
-            <Background />
+            {/* <Background /> */}
          </div>
       </div>
    )

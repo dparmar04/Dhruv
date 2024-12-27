@@ -40,7 +40,7 @@ const Portfolio = () => {
    return (
       <div className="bg-black min-h-screen">
          <div className='w-full h-screen overflow-hidden'>
-            <Circular />
+            {/* <Circular /> */}
          </div>
 
          <div className='w-full bg-black'>
