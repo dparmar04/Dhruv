@@ -7,6 +7,7 @@ import Background from './components/Background'
 import About from './components/About'
 import CustomCursor from './components/CustomCursor'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import Contact from './components/Contact'
 
 const App = () => {
    return (
@@ -16,7 +17,7 @@ const App = () => {
          <Routes>
             <Route exact path="/" element={<div><Hero /><About /></div>} />
             <Route path="/projects" element={<Portfolio />} />
-            {/* <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/contact" element={<Contact />} />
          </Routes>
       </BrowserRouter>
    );

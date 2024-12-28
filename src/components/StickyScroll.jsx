@@ -31,12 +31,7 @@ const StickyScroll = ({ content }) => {
    };
 
    return (
-      <div
-         ref={ref}
-         onScroll={handleScroll}
-         className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10 scrollbar-hide"
-         style={{ background: "black" }}
-      >
+      <div ref={ref} onScroll={handleScroll} className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10 scrollbar-hide">
          <div className="relative flex items-start px-4">
             <div className="max-w-2xl">
                {content.map((item, index) => (
@@ -60,6 +55,7 @@ const StickyScroll = ({ content }) => {
                ))}
             </div>
          </div>
+
          <div className="hidden lg:block h-full w-1/2 rounded-md sticky top-10 overflow-hidden shadow-lg">
             <AnimatePresence mode="wait">
                <motion.div

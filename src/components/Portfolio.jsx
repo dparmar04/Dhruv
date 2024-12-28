@@ -11,18 +11,24 @@ const Portfolio = () => {
       {
          title: "Celestara",
          description: "Developed a visually engaging website with advanced animations and responsive design, leveraging React.js to ensure a seamless user experience across devices",
-         content: <a href="https://celestara.vercel.app/" target='_blank' className='cursor-none'> <img src="/photo1.png" alt="Project 1" className="projectImg w-full h-full object-cover" /> </a>,
+         content: <a href="https://celestara.vercel.app/" target='_blank' className='cursor-none group'>
+            <img
+               src="/photo1.png"
+               alt="Project 1"
+               className="projectImg w-full h-full object-cover p-2 rounded-3xl "
+            />
+         </a>,
       },
       {
          title: "HealDoc",
          description: "As a Frontend Developer, I designed and developed the entire website from scratch using React.js, ensuring a smooth user experience and responsive design.",
          content:
-            <a href="https://healdoc.ai/" target='_blank' className='cursor-none'   > <img src="/photo2.png" alt="Project 2" className="projectImg w-full h-full object-contain" /> </a>,
+            <a href="https://healdoc.ai/" target='_blank' className='cursor-none'   > <img src="/photo2.png" alt="Project 2" className="projectImg w-full h-full object-cover rounded-3xl" /> </a>,
       },
       {
          title: "Helverse",
          description: "It features a modern, clean design with smooth transitions and animations, creating an appealing user experience.",
-         content: <a href="https://helverse.netlify.app/" target='_blank' className='cursor-none'> <img src="/photo3.png" alt="Project 3" className="projectImg w-full h-full object-cover" /> </a>,
+         content: <a href="https://helverse.netlify.app/" target='_blank' className='cursor-none'> <img src="/photo3.png" alt="Project 3" className="projectImg w-full h-full object-cover rounded-3xl" /> </a>,
       },
    ];
 
