@@ -37,7 +37,7 @@ const About = () => {
          return span;
       });
 
-      // Create animation for each character
+      // Create animation for each character with slower speed
       gsap.fromTo(chars,
          {
             opacity: 0,
@@ -48,18 +48,17 @@ const About = () => {
             opacity: 1,
             filter: 'blur(0px)',
             y: 0,
-            duration: 1.5,
-            stagger: 0.05,
-            ease: "power4.out",
+            duration: 2.5, // Increased duration
+            stagger: 0.08, // Increased stagger delay
+            ease: "power2.out", // Changed to smoother easing
             scrollTrigger: {
                trigger: textRef.current,
                start: "top center+=100",
-               end: "bottom-=50 center", // Adjusted end point to ensure full visibility
-               scrub: 1,
-               toggleActions: "play none none reverse", // Controls animation behavior
-               markers: false, // Set to true for debugging
+               end: "bottom-=50 center",
+               scrub: 2, // Increased scrub value for smoother scrolling
+               toggleActions: "play none none reverse",
+               markers: false,
                onUpdate: (self) => {
-                  // Ensure all text is visible when scrolling completes
                   if (self.progress === 1) {
                      chars.forEach(char => {
                         char.style.opacity = '1';
@@ -128,7 +127,7 @@ const About = () => {
          <div className='w-full flex justify-center mb-10'>
             <AnimatedPath />
          </div>
-         <div className='w-3/4 h-auto text-white text-center text-5xl leading-snug font-space font-thin relative mb-44'>
+         <div className='w-3/4 h-auto text-white text-center text-5xl leading-snug font-space font-thin relative mb-48'>
             <p ref={textRef}>I create seamless, pixel-perfect websites that blend modern design with efficient, functional code to deliver engaging and memorable user experiences.</p>
             <div
                id="exploreBtn"
