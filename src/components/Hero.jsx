@@ -12,11 +12,11 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
       const tl = gsap.timeline();
 
       // Get heading text and create spans for each character
-      const headingText = headingRef.current.textContent;
-      headingRef.current.textContent = '';
+      const headingText = "Hi,I'm Dhruv"; // Hardcode the text instead of getting from ref
+      headingRef.current.innerHTML = ''; // Clear existing content
       const headingChars = headingText.split('').map(char => {
          const span = document.createElement('span');
-         span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space for spaces
+         span.textContent = char === ' ' ? '\u00A0' : char;
          span.style.display = 'inline-block';
          headingRef.current.appendChild(span);
          return span;
@@ -26,22 +26,24 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
       tl.fromTo(headingChars, {
          opacity: 0,
          filter: 'blur(20px)',
-         y: 100
+         y: 100,
+         rotateX: -90
       }, {
          opacity: 1,
          filter: 'blur(0px)',
          y: 0,
-         duration: 1,
-         stagger: 0.05,
-         ease: "power4.out"
-      }, "-=1");
+         rotateX: 0,
+         duration: 1.2,
+         stagger: 0.08,
+         ease: "back.out(1.7)"
+      });
 
       // Get subheading text and create spans for each character
-      const subHeadingText = subHeadingRef.current.textContent;
-      subHeadingRef.current.textContent = '';
+      const subHeadingText = "Front-end Developer";
+      subHeadingRef.current.innerHTML = '';
       const subHeadingChars = subHeadingText.split('').map(char => {
          const span = document.createElement('span');
-         span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space for spaces
+         span.textContent = char === ' ' ? '\u00A0' : char;
          span.style.display = 'inline-block';
          subHeadingRef.current.appendChild(span);
          return span;
@@ -59,7 +61,7 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
          duration: 1,
          stagger: 0.05,
          ease: "power4.out"
-      }, "-=0.5"); // Start slightly before heading animation ends
+      }, "-=0.8"); // Adjust timing to overlap with heading animation
 
    }, []);
 
@@ -86,11 +88,6 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
          <div className='w-full h-full absolute top-0 left-0'>
             {/* <Background /> */}
          </div>
-         <img
-            src="/favicon.png"
-            alt="Logo"
-            className="w-20 h-20 fixed cursor-none rounded-full z-20 !opacity-100 right-4 bottom-4"
-         />
       </div>
    )
 }

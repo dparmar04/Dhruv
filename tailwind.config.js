@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
    content: [
       "./index.html",
       "./src/**/*.{js,ts,jsx,tsx}",
@@ -12,7 +14,8 @@ export default {
          animation: {
             'star-movement-bottom': 'star-movement-bottom linear infinite alternate',
             'star-movement-top': 'star-movement-top linear infinite alternate',
-            'shine': 'shine 5s linear infinite', // Add shine animation
+            'shine': 'shine 5s linear infinite',
+            'toast': 'slideInOut 3s ease-in-out forwards',
          },
          keyframes: {
             'star-movement-bottom': {
@@ -28,8 +31,15 @@ export default {
                '0%': { 'background-position': '100%' },
                '100%': { 'background-position': '-100%' },
             },
+            slideInOut: {
+               '0%': { opacity: '0', transform: 'translateY(20px)' },
+               '10%': { opacity: '1', transform: 'translateY(0)' },
+               '90%': { opacity: '1', transform: 'translateY(0)' },
+               '100%': { opacity: '0', transform: 'translateY(20px)' },
+            },
          },
       },
    },
    plugins: [require('tailwind-scrollbar-hide')],
 }
+)

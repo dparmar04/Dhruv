@@ -1,120 +1,166 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from 'react'
+import { Input } from "@material-tailwind/react";
+import AnimatedPath from './AnimatedPath';
+import gsap from 'gsap';
 
-const Contact = () => {
+const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className = '' }) => {
+
+
+   const animationDuration = `${speed}s`;
+   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+   const [status, setStatus] = useState('');
+   const [loading, setLoading] = useState(false); // New state for showing "Sending..."
+   const [showMessage, setShowMessage] = useState(false);
+   const headingRef = useRef(null);
+   const TitleRef = useRef(null);
+
+
+   useEffect(() => {
+      // Create timeline for sequenced animations
+      const tl = gsap.timeline();
+
+      // Get heading text and create spans for each character
+      const TitleText = "Get in touch"; // Hardcode the text instead of getting from ref
+      headingRef.current.innerHTML = ''; // Clear existing content
+      const headingChars = TitleText.split('').map(char => {
+         const span = document.createElement('span');
+         span.textContent = char === ' ' ? '\u00A0' : char;
+         span.style.display = 'inline-block';
+         headingRef.current.appendChild(span);
+         return span;
+      });
+
+      // Animate heading characters
+      tl.fromTo(headingChars, {
+         opacity: 0,
+         filter: 'blur(20px)',
+         y: -100,
+         rotateX: -90
+      }, {
+         opacity: 1,
+         filter: 'blur(0px)',
+         y: 0,
+         rotateX: 0,
+         duration: 1.2,
+         stagger: 0.08,
+         ease: "back.out(1.7)"
+      });
+
+   })
+
+   const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+   };
+
+   const handleSubmit = async (e) => {
+      e.preventDefault();
+      setLoading(true); // Set loading state to true
+
+      try {
+         const response = await fetch('http://localhost:5000/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+         });
+
+         const result = await response.json();
+
+         if (response.ok) {
+            setStatus('🌟 Message received! I’m excited to discuss how we can make your vision a reality.');
+            setFormData({ name: '', email: '', message: '' });
+         } else {
+            setStatus(result.error || '⚠️ Failed to send your message. Please try again.');
+         }
+      } catch (error) {
+         console.error('Error:', error);
+         setStatus('⚠️ Failed to send your message. Please try again.');
+      } finally {
+         setLoading(false); // Set loading state to false
+      }
+      // Show the message temporarily
+      setShowMessage(true);
+      setTimeout(() => {
+         setShowMessage(false);
+      }, 7000);
+   };
+
+
    return (
-      <div className="min-h-screen w-1/2 bg-gray-100 flex items-center justify-center">
+      <div className='w-full bg-black flex justify-center items-center'>
 
-         <form
-            id="contactForm"
-            method="post"
-            action="https://script.google.com/macros/s/AKfycbz5vdMpt83-WIr9XK4yTjOz7-6yrCvUmnNHI4ttrFriO43y2OQ3WOw4t3h5k4LC98s/exec"
-            className="p-4 bg-white rounded-lg"
-         >
-            {/* Name */}
-            <label
-               htmlFor="fname"
-               className="block text-sm font-medium text-gray-700 mb-1"
+         <h1 className='text-9xl text-white m-10' >
+            <div
+               ref={TitleRef}
+               className={`text-[#b5b5b5a4] rounded-3xl bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
+               style={{
+                  backgroundImage: 'linear-gradient(120deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 60%)',
+                  backgroundSize: '200% 100%',
+                  WebkitBackgroundClip: 'text',
+                  animationDuration: '2s',
+               }}
             >
-               Your Name
-            </label>
-            <input
-               type="text"
-               id="fname"
-               name="firstname"
-               placeholder="Your Name"
-               required
-               className="w-full mb-4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+               <div className="line">How can we</div>
+               <div className="line">collaborate?</div>
+            </div>
+         </h1>
 
-            {/* Email */}
-            <label
-               htmlFor="email"
-               className="block text-sm font-medium text-gray-700 mb-1"
-            >
-               Your Email
-            </label>
-            <input
-               type="email"
-               id="email"
-               name="email"
-               placeholder="Your Email"
-               required
-               className="w-full mb-4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+         <div className='contact-container w-full mx-16 '>
+            <form onSubmit={handleSubmit} className='h-full flex flex-col gap-y-6'>
+               <div className='py-4'>
+                  <h1 className='text-7xl text-center my-6 font-space uppercase text-white' ref={headingRef}>Get in touch</h1>
 
-            {/* Service */}
-            <label
-               htmlFor="service"
-               className="block text-sm font-medium text-gray-700 mb-1"
-            >
-               Service Required
-            </label>
-            <input
-               type="text"
-               id="service"
-               name="service"
-               placeholder="Website type..."
-               required
-               className="w-full mb-4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+                  <Input
+                     variant="standard"
+                     label="Name"
+                     name="name"
+                     value={formData.name}
+                     onChange={handleChange}
+                     placeholder="Your name"
+                     className="text-[24px] capitalize"
+                     color='white' />
+               </div>
+               <div className='py-4'>
+                  <Input variant="standard"
+                     label="Email"
+                     name="email"
+                     value={formData.email}
+                     onChange={handleChange}
+                     placeholder="Your email"
+                     color='white'
+                     className="text-[24px]" />
+               </div>
+               <div className='py-4'>
+                  <Input variant="standard"
+                     label="Message"
+                     name="message"
+                     value={formData.message}
+                     onChange={handleChange}
+                     placeholder="Say hello!"
+                     color='white'
+                     className="text-[24px] capitalize" />
+               </div>
+               <div
+                  className={`text-[#b5b5b5a4] rounded-full bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
+                  style={{
+                     backgroundImage: 'linear-gradient(120deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 60%)',
+                     backgroundSize: '200% 100%',
+                     WebkitBackgroundClip: 'text',
+                     animationDuration: '2s',
+                  }}
+               >
+                  <button type="submit" className='p-3 text-xl font-space transition-all duration-300 ease-in-out border border-[#b5b5b5a4] rounded-3xl ' disabled={loading} >
+                     {loading ? 'Sending...' : text}
+                  </button>
+               </div>
+            </form>
+            {showMessage && (
+               <div className="toast-message fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-4 rounded-lg shadow-md text-sm animate-toast">
+                  {status}
+               </div>
+            )}
+         </div>
+      </div >
+   )
+}
 
-            {/* Assigned Person */}
-            <label
-               htmlFor="person"
-               className="block text-sm font-medium text-gray-700 mb-1"
-            >
-               Assigned Person's Name
-            </label>
-            <input
-               type="text"
-               id="person"
-               name="person"
-               placeholder="Person whom you want to give your work..."
-               required
-               className="w-full mb-4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-            {/* Budget */}
-            <label
-               htmlFor="budget"
-               className="block text-sm font-medium text-gray-700 mb-1"
-            >
-               Budget
-            </label>
-            <input
-               type="number"
-               id="budget"
-               name="budget"
-               placeholder="For ex: $300-500"
-               required
-               className="w-full mb-4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-            {/* Request */}
-            <label
-               htmlFor="request"
-               className="block text-sm font-medium text-gray-700 mb-1"
-            >
-               Any Other Request?
-            </label>
-            <textarea
-               id="request"
-               name="request"
-               placeholder="Write something..."
-               className="w-full mb-4 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-               rows="4"
-            ></textarea>
-
-            {/* Submit */}
-            <button
-               type="submit"
-               className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-            >
-               Submit
-            </button>
-         </form>
-      </div>
-   );
-};
-
-export default Contact;
+export default Contact
