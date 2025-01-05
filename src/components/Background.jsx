@@ -8,33 +8,17 @@ import { Bloom, EffectComposer, ToneMapping } from '@react-three/postprocessing'
 
 const Background = () => {
    return (
-      <Canvas camera={{ fov: 25, position: [0, 0, 10] }} performance={{ min: 0.5, max: 1 }} dpr={[1, 2]}>
-         {/* <OrbitControls enableZoom={false} /> */}
-         <ambientLight intensity={1.5} /> {/* Increased ambient light */}
-         <pointLight position={[10, 20, 30]} intensity={3} /> {/* Increased main light */}
-         <pointLight position={[-10, -10, -10]} intensity={1.5} /> {/* Increased fill light */}
-         {/* Added spotlight specifically for the crystal */}
-         <spotLight
-            position={[2, 5, 5]}
-            intensity={5}
-            angle={0.5}
-            penumbra={1}
-            target-position={[2, 0, 3]} // Targeting crystal position
-         />
+      <Canvas camera={{ fov: 25, position: [0, 0, 10] }}>
+         <ambientLight intensity={1.5} />
          <BackScene />
-         <EffectComposer>
+         {/* <EffectComposer>
             <Bloom
                mipmapBlur
                intensity={1.5} // Increased bloom intensity
                luminanceThreshold={0.5} // Lowered threshold to catch more light
                luminanceSmoothing={0.2}
             />
-            <ToneMapping
-               adaptive
-               luminanceAveraging={0.7}
-               toneMapping={3}
-            />
-         </EffectComposer>
+         </EffectComposer> */}
       </Canvas>
    )
 }

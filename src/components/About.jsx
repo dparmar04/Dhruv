@@ -127,7 +127,7 @@ const About = () => {
          <div className='w-full flex justify-center mb-10'>
             <AnimatedPath />
          </div>
-         <div className='w-3/4 h-auto text-white text-center text-5xl leading-snug font-space font-thin relative mb-48'>
+         <div className='w-3/4 h-auto text-white text-center text-[38px] leading-snug font-space font-thin relative mb-48'>
             <p ref={textRef}>I create seamless, pixel-perfect websites that blend modern design with efficient, functional code to deliver engaging and memorable user experiences.</p>
             <div
                id="exploreBtn"

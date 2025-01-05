@@ -86,7 +86,7 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
             </div>
          </div>
          <div className='w-full h-full absolute top-0 left-0'>
-            {/* <Background /> */}
+            <Background />
          </div>
       </div>
    )

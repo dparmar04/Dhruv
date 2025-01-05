@@ -23,10 +23,14 @@ a[data-link]::after {
 
 a[data-link]:hover::after {
    transform: translate(-50%, calc(-50% + 0px));
-   transition: transform 0.4s 0.1s cubic-bezier(0.32, 0, 0.67, 0);
+   /* transition: transform 0.4s 0.1s cubic-bezier(0.32, 0, 0.67, 0); */
 }
 
+a[data-link] span {
+   transform: translateY(0);
+   transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
 a[data-link]:hover span {
    transform: translateY(25px);
-   transition: transform 0.4s cubic-bezier(0.32, 0, 0.67, 0);
+   /* transition: transform 0.4s cubic-bezier(0.32, 0, 0.67, 0); */
 }

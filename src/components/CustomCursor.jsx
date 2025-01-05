@@ -38,7 +38,7 @@ const CustomCursor = () => {
                color: 'white',
                border: 0,
             });
-            ring.innerHTML = '<span class="text-white text-[8px]">Click Me</span>';
+            ring.innerHTML = '<span class="text-white text-[6px]">Click Me</span>';
             cursor.style.display = 'none';
          }
       };
@@ -95,12 +95,12 @@ const CustomCursor = () => {
       <>
          <div
             ref={cursorRef}
-            className="fixed w-4 h-4 bg-white rounded-full pointer-events-none z-50"
+            className="fixed w-3 h-3 bg-white rounded-full pointer-events-none z-50"
             style={{ transform: 'translate(-50%, -50%)' }}
          />
          <div
             ref={ringRef}
-            className="fixed w-10 h-10 border-2 border-white rounded-full pointer-events-none z-50 flex items-center justify-center"
+            className="fixed w-8 h-8 border-2 border-white rounded-full pointer-events-none z-50 flex items-center justify-center"
             style={{ transform: 'translate(-50%, -50%)' }}
          />
       </>
