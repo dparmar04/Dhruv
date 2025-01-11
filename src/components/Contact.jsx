@@ -59,13 +59,14 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
       setLoading(true); // Set loading state to true
 
       try {
-         const response = await fetch('/api/sendEmail', {
+         const response = await fetch('https://dhruvfolio.vercel.app/api/sendEmail', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
          });
 
-         const result = await response.json();
+         const text = await response.text();
+         const result = JSON.parse(text);
 
          if (response.ok) {
             setStatus('🌟 Message received! I’m excited to discuss how we can make your vision a reality.');
