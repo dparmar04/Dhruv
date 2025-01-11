@@ -22,6 +22,7 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
       // Get heading text and create spans for each character
       const TitleText = "Get in touch"; // Hardcode the text instead of getting from ref
       headingRef.current.innerHTML = ''; // Clear existing content
+
       const headingChars = TitleText.split('').map(char => {
          const span = document.createElement('span');
          span.textContent = char === ' ' ? '\u00A0' : char;
@@ -44,9 +45,10 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
          duration: 1.2,
          stagger: 0.08,
          ease: "back.out(1.7)"
-      });
+      }
+      );
 
-   })
+   }, []);
 
    const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -57,7 +59,7 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
       setLoading(true); // Set loading state to true
 
       try {
-         const response = await fetch('http://localhost:5000/api/contact', {
+         const response = await fetch('/api/sendEmail', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
@@ -108,7 +110,6 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
             <form onSubmit={handleSubmit} className='h-full flex flex-col gap-y-6'>
                <div className='py-4'>
                   <h1 className='text-7xl text-center my-6 font-space uppercase text-white' ref={headingRef}>Get in touch</h1>
-
                   <Input
                      variant="standard"
                      label="Name"

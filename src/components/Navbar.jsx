@@ -82,7 +82,13 @@ const Navbar = () => {
                   className="relative group text-xl cursor-none"
                   onClick={(e) => {
                      e.preventDefault();
-                     document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+                     if (window.location.pathname !== "/") {
+                        // Navigate to home page first
+                        window.location.href = "/#about";
+                     } else {
+                        // Smooth scroll to the About section
+                        document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+                     }
                   }}
                >
                   <span ref={aboutRef} className="inline-block">

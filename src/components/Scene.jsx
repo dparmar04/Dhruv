@@ -17,7 +17,7 @@ const Scene = () => {
    tex.wrapS = THREE.RepeatWrapping;
 
    return (
-      <group rotation={[-0.3, 1.3, 0.5]}>
+      <group position={[0, 0.1, 0]} rotation={[-0.3, 1.3, 0.5]}>
          <mesh ref={cyl}>
             <cylinderGeometry args={[1, 1, 1.2, 80, 80, true]} />
             <meshStandardMaterial map={tex} transparent side={THREE.DoubleSide} />

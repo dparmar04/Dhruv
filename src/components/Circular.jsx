@@ -11,7 +11,7 @@ const Circular = () => {
             {/* <OrbitControls enableZoom={false} /> */}
             <ambientLight />
             <Scene />
-            <EffectComposer>
+            {/* <EffectComposer>
                <Bloom
                   mipmapBlur
                   intensity={6.5} // The bloom intensity.
@@ -20,7 +20,7 @@ const Circular = () => {
                   luminanceSmoothing={0.3} // smoothness of the luminance threshold. Range is [0, 1]
                />
                <ToneMapping adaptive />
-            </EffectComposer>
+            </EffectComposer> */}
          </Canvas>
       </div>
    )
