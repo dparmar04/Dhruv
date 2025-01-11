@@ -8,14 +8,14 @@ export default async (req, res) => {
       const transporter = nodemailer.createTransport({
          service: 'gmail',
          auth: {
-            user: 'dronix.dev@gmail.com',
-            pass: 'tiov ysgz dcrw qvgh',
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
          },
       });
 
       const mailOptions = {
          from: email,
-         to: 'dronix.dev@gmailcom', // Your email where you want to receive messages
+         to: process.env.SMTP_TO_EMAIL, // Your email where you want to receive messages
          subject: `Message from ${name}`,
          text: message,
       };
