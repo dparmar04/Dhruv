@@ -2,6 +2,7 @@ import Background from './Background.jsx';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import Loader from './Loader.jsx';
+import '../styles.css'
 
 const Hero = ({ disabled = false, speed = 1, className = '' }) => {
    const [isCanvasRendered, setIsCanvasRendered] = useState(false);
@@ -74,6 +75,15 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
          ease: "power4.out"
       }, "-=0.8"); // Adjust timing to overlap with heading animation
 
+      const handleRotation = () => {
+         gsap.to(".textround", {
+            rotation: "+=360",
+            duration: 10,
+            repeat: -1,
+            ease: "none"
+         });
+      }
+      handleRotation();
    }, [isLoaded]);
 
    return (
@@ -88,7 +98,7 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
 
          {isLoaded && (
             <>
-               <div className='greeting w-full text-white h-screen font-bold flex flex-col items-start justify-center text-left pl-28 z-10 '>
+               <div className='relative greeting w-full text-white h-full font-bold flex flex-col items-start justify-center text-left pl-28 z-10 '>
                   <h1 className='text-9xl' ref={headingRef}>
                      Hi,I'm Dhruv
                   </h1>
@@ -105,6 +115,24 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
                         <span className="inline-block">Front-end Developer</span>
                      </p>
                   </div>
+
+                  <div className="absolute bottom-28 left-1/2 w-max justify-center items-center flex flex-col gap-y-2 transform -translate-x-1/2">
+                     <div className="absolute rounded-full bg-white">
+                     </div>
+                     <div className='textround w-[40%] relative'>
+                        <svg viewBox="0 0 300 300" className="w-full">
+                           <path id="curve" fill="none" d="M 50,150 a 100,100 0 1,1 200,0 a 100,100 0 1,1 -200,0" />
+                           <text fill="white" className='text-2xl uppercase'>
+                              <textPath xlinkHref="#curve" startOffset="0">
+                                 <tspan style={{ wordSpacing: '30px', letterSpacing: '0.02em' }}>
+                                    Scroll Smoothly Scroll Smoothly
+                                 </tspan>
+                              </textPath>
+                           </text>
+                        </svg>
+                     </div>
+                  </div>
+
                </div>
             </>
          )}

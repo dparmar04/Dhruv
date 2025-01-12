@@ -30,7 +30,22 @@ a[data-link] span {
    transform: translateY(0);
    transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
 }
+
 a[data-link]:hover span {
    transform: translateY(25px);
    /* transition: transform 0.4s cubic-bezier(0.32, 0, 0.67, 0); */
+}
+
+.arrow {
+   position: relative;
+   width: 20px;
+   /* Width of the arrow */
+   height: 20px;
+   /* Height of the arrow */
+   border-left: 2px solid transparent;
+   border-right: 2px solid transparent;
+   border-top: 10px solid white;
+   /* Creates the arrow */
+   transform: rotate(45deg);
+   /* Optional: Rotates the arrow to give a "dropdown" effect */
 }
