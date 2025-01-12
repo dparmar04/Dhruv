@@ -58,14 +58,26 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
       e.preventDefault();
       setLoading(true); // Set loading state to true
 
+      if (!formData.name || !formData.email || !formData.message) {
+         setStatus('⚠️ Please fill out all fields before submitting.');
+         setLoading(false);
+         return;
+      }
+
       try {
-         const response = await fetch('https://dhruvfolio.vercel.app/api/sendEmail', {
+         const response = await fetch('api/sendEmail', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
          });
 
-         const text = await response.text();
+         const text = await response.text(); // Get raw response text
+         console.log('Response Text:', text); // Log the raw response for debugging
+
+         if (!text) {
+            throw new Error('Empty response from the server');
+         }
+
          const result = JSON.parse(text);
 
          if (response.ok) {
