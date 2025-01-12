@@ -96,7 +96,7 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
       setShowMessage(true);
       setTimeout(() => {
          setShowMessage(false);
-      }, 7000);
+      }, 10000);
    };
 
 
@@ -168,7 +168,7 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
                </div>
             </form>
             {showMessage && (
-               <div className="toast-message fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white px-6 py-4 rounded-lg shadow-md text-sm animate-toast">
+               <div className="toast-message fixed bottom-5 left-5 mx-auto transform -translate-x-1/2 bg-gray-800 text-white px-6 py-4 rounded-lg shadow-md text-sm animate-toast">
                   {status}
                </div>
             )}
