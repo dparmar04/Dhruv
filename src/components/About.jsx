@@ -24,18 +24,30 @@ const About = () => {
    }, []);
 
    useEffect(() => {
-      // Get text content and create spans for each character
+      // Get text content and create spans for each word and letter
       const text = textRef.current.textContent;
-      textRef.current.textContent = '';
+      textRef.current.textContent = ''; // Clear original text
 
-      const chars = text.split('').map(char => {
-         const span = document.createElement('span');
-         span.textContent = char === ' ' ? '\u00A0' : char;
-         span.style.display = 'inline-block';
-         span.style.opacity = '0';
-         textRef.current.appendChild(span);
-         return span;
+      const words = text.split(' ').map(word => {
+         const wordSpan = document.createElement('span'); // Span for the word
+         wordSpan.style.display = 'inline-flex'; // Use flexbox for proper wrapping
+         wordSpan.style.flexWrap = 'nowrap'; // Prevent breaking within the word
+
+         word.split('').forEach(char => {
+            const charSpan = document.createElement('span'); // Span for each character
+            charSpan.textContent = char; // Set character
+            charSpan.style.display = 'inline-block'; // Animate each letter independently
+            charSpan.style.opacity = '0'; // Initial opacity
+            wordSpan.appendChild(charSpan); // Add character span to word span
+         });
+
+         textRef.current.appendChild(wordSpan); // Add word span to the element
+         textRef.current.appendChild(document.createTextNode(' ')); // Add space between words
+         return wordSpan;
       });
+
+      // Animate each letter inside the words
+      const chars = Array.from(textRef.current.querySelectorAll('span span'));
 
       // Create animation for each character with slower speed
       gsap.fromTo(chars,
@@ -137,7 +149,7 @@ const About = () => {
                   transition: 'transform 0.09s ease-out',
                   cursor: 'none'
                }}
-               onClick={() => window.open('https://1drv.ms/w/c/e1f9f212b3353f5d/ETm0hJSbrNFHtvYWNcYpFVQBstpmngOmJl16JN1u6ARXqQ?e=YkKqOG', '_blank')}
+               onClick={() => window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8d2d6012-bb24-483d-a7e8-884c7c720032', '_blank')}
                onMouseEnter={() => setIsHovered(true)}
                onMouseLeave={() => setIsHovered(false)}
             >

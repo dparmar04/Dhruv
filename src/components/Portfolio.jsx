@@ -5,6 +5,7 @@ import Circular from './Circular';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import StickyScroll from './StickyScroll';
+import StarBorder from './StarBorder';
 
 const Portfolio = () => {
    const content = [
@@ -65,8 +66,15 @@ const Portfolio = () => {
             </div>
 
             {/* Portfolio */}
-            <div className='w-full h-screen'>
+            <div className='w-full h-screen relative'>
                <StickyScroll content={content} />
+               <div className='absolute bottom-6 right-[35%] flex flex-col items-center'>
+                  <p className='text-white text-2xl font-space my-4'>Create, Innovate, Dominate – Contact Now!</p>
+                  <StarBorder onClick={() => window.location.href = '/contact'}>
+                     Get in touch
+                  </StarBorder>
+
+               </div>
             </div>
          </div>
       </div>
