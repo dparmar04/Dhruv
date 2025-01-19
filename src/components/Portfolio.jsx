@@ -1,6 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import '../styles.css'
-import { motion } from "framer-motion";
 import Circular from './Circular';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -32,7 +30,6 @@ const Portfolio = () => {
          content: <a href="https://helverse.netlify.app/" target='_blank' className='cursor-none'> <img src="/photo3.png" alt="Project 3" className="projectImg w-full h-full object-cover rounded-3xl" /> </a>,
       },
    ];
-
 
    useEffect(() => {
       const marquee = gsap.utils.toArray('.marquee');
@@ -66,19 +63,18 @@ const Portfolio = () => {
             </div>
 
             {/* Portfolio */}
-            <div className='w-full h-screen relative'>
+            <div className='w-full h-auto relative'>
                <StickyScroll content={content} />
-               <div className='absolute bottom-6 right-[35%] flex flex-col items-center'>
+               <div className='flex flex-col items-center my-10'>
                   <p className='text-white text-2xl font-space my-4'>Create, Innovate, Dominate – Contact Now!</p>
                   <StarBorder onClick={() => window.location.href = '/contact'}>
                      Get in touch
                   </StarBorder>
-
                </div>
             </div>
          </div>
       </div>
    );
-}
+};
 
 export default Portfolio;
