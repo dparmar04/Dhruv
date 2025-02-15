@@ -101,9 +101,9 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
 
 
    return (
-      <div className='w-full bg-black flex justify-center items-center'>
-
-         <h1 className='text-9xl text-white m-10' >
+      <div className="w-full bg-black flex flex-wrap lg:flex-nowrap flex-col lg:flex-row justify-between items-center">
+         {/* Title Section */}
+         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl text-white m-6 lg:m-10 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[40%] text-center lg:text-left">
             <div
                ref={TitleRef}
                className={`text-[#b5b5b5a4] rounded-3xl bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
@@ -119,10 +119,13 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
             </div>
          </h1>
 
-         <div className='contact-container w-full mx-16 '>
-            <form onSubmit={handleSubmit} className='h-full flex flex-col gap-y-6'>
-               <div className='py-4'>
-                  <h1 className='text-7xl text-center my-6 font-space uppercase text-white' ref={headingRef}>Get in touch</h1>
+         {/* Contact Form */}
+         <div className="contact-container w-[90%] sm:w-[80%] md:w-[70%] lg:w-[40%] mx-6 lg:mx-16">
+            <form onSubmit={handleSubmit} className="h-full flex flex-col gap-y-4 md:gap-y-6">
+               <div className="py-4">
+                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-center my-4 lg:my-6 font-space uppercase text-white" ref={headingRef}>
+                     Get in touch
+                  </h1>
                   <Input
                      variant="standard"
                      label="Name"
@@ -130,28 +133,33 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
                      value={formData.name}
                      onChange={handleChange}
                      placeholder="Your name"
-                     className="text-[24px] capitalize"
-                     color='white' />
+                     className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] capitalize"
+                     color="white"
+                  />
                </div>
-               <div className='py-4'>
-                  <Input variant="standard"
+               <div className="py-4">
+                  <Input
+                     variant="standard"
                      label="Email"
                      name="email"
                      value={formData.email}
                      onChange={handleChange}
                      placeholder="Your email"
-                     color='white'
-                     className="text-[24px]" />
+                     className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px]"
+                     color="white"
+                  />
                </div>
-               <div className='py-4'>
-                  <Input variant="standard"
+               <div className="py-4">
+                  <Input
+                     variant="standard"
                      label="Message"
                      name="message"
                      value={formData.message}
                      onChange={handleChange}
                      placeholder="Say hello!"
-                     color='white'
-                     className="text-[24px] capitalize" />
+                     className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] capitalize"
+                     color="white"
+                  />
                </div>
                <div
                   className={`text-[#b5b5b5a4] rounded-full bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
@@ -162,7 +170,7 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
                      animationDuration: '2s',
                   }}
                >
-                  <button type="submit" className='p-3 text-xl font-space transition-all duration-300 ease-in-out border border-[#b5b5b5a4] rounded-3xl ' disabled={loading} >
+                  <button type="submit" className="p-3 text-lg sm:text-xl font-space transition-all duration-300 ease-in-out border border-[#b5b5b5a4] rounded-3xl" disabled={loading}>
                      {loading ? 'Sending...' : text}
                   </button>
                </div>
@@ -173,7 +181,9 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
                </div>
             )}
          </div>
-      </div >
+      </div>
+
+
    )
 }
 

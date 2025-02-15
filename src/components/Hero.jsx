@@ -2,7 +2,7 @@ import Background from './Background.jsx';
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import Loader from './Loader.jsx';
-import '../styles.css'
+import '../styles.css';
 
 const Hero = ({ disabled = false, speed = 1, className = '' }) => {
    const [isCanvasRendered, setIsCanvasRendered] = useState(false);
@@ -98,10 +98,13 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
 
          {isLoaded && (
             <>
-               <div className='relative greeting w-full text-white h-full font-bold flex flex-col items-start justify-center text-left pl-28 z-10 '>
-                  <h1 className='text-9xl' ref={headingRef}>
+               <div className='relative greeting w-full text-white h-full font-bold flex flex-col items-start justify-center text-left pl-4 sm:pl-12 md:pl-28 z-10'>
+                  {/* Responsive Heading */}
+                  <h1 className='text-5xl sm:text-7xl md:text-8xl lg:text-9xl' ref={headingRef}>
                      Hi,I'm Dhruv
                   </h1>
+
+                  {/* Responsive Subheading */}
                   <div
                      className={`text-[#b5b5b5a4] bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
                      style={{
@@ -111,18 +114,18 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
                         animationDuration: '2s',
                      }}
                   >
-                     <p className='text-5xl uppercase my-3' ref={subHeadingRef}>
+                     <p className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase my-3' ref={subHeadingRef}>
                         <span className="inline-block">Front-end Developer</span>
                      </p>
                   </div>
 
-                  <div className="absolute bottom-28 left-1/2 w-max justify-center items-center flex flex-col gap-y-2 transform -translate-x-1/2">
-                     <div className="absolute rounded-full bg-white">
-                     </div>
-                     <div className='textround w-[40%] relative'>
+                  {/* Responsive Scroll Indicator */}
+                  <div className="absolute bottom-10 sm:bottom-28 left-1/2 w-max justify-center items-center flex flex-col gap-y-2 transform -translate-x-1/2">
+                     <div className="absolute rounded-full bg-white"></div>
+                     <div className='textround w-[80%] sm:w-[60%] md:w-[40%] relative'>
                         <svg viewBox="0 0 300 300" className="w-full">
                            <path id="curve" fill="none" d="M 50,150 a 100,100 0 1,1 200,0 a 100,100 0 1,1 -200,0" />
-                           <text fill="white" className='text-2xl uppercase'>
+                           <text fill="white" className='text-sm sm:text-lg md:text-xl lg:text-2xl uppercase'>
                               <textPath xlinkHref="#curve" startOffset="0">
                                  <tspan style={{ wordSpacing: '30px', letterSpacing: '0.02em' }}>
                                     Scroll Smoothly Scroll Smoothly
@@ -132,12 +135,11 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
                         </svg>
                      </div>
                   </div>
-
                </div>
             </>
          )}
       </div>
-   )
-}
+   );
+};
 
-export default Hero
+export default Hero;

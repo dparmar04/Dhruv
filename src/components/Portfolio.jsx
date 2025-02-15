@@ -64,7 +64,21 @@ const Portfolio = () => {
 
             {/* Portfolio */}
             <div className='w-full h-auto relative'>
-               <StickyScroll content={content} />
+               <div
+                  className="sticky-scroll-container w-full h-screen relative"
+                  style={{ overflow: "hidden" }}
+               >
+                  {/* StickyScroll occupies full height when section reaches top */}
+                  <div
+                     className="sticky-scroll-content w-full h-full sticky top-0 overflow-y-scroll"
+                     style={{
+                        display: "flex",
+                        flexDirection: "column",
+                     }}
+                  >
+                     <StickyScroll content={content} />
+                  </div>
+               </div>
                <div className='flex flex-col items-center my-10'>
                   <p className='text-white text-2xl font-space my-4'>Create, Innovate, Dominate – Contact Now!</p>
                   <StarBorder onClick={() => window.location.href = '/contact'}>

@@ -1,29 +1,36 @@
-import React from 'react'
-import { OrbitControls } from '@react-three/drei';
-import Scene from './Scene';
-import { Bloom, EffectComposer, ToneMapping } from '@react-three/postprocessing';
+import React, { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
+import Scene from './Scene';
 
 const Circular = () => {
+   const [fov, setFov] = useState(20); // Default FOV
+
+   useEffect(() => {
+      const updateFov = () => {
+         const width = window.innerWidth;
+         if (width < 640) {
+            setFov(50); // Mobile view (small screens)
+         } else if (width < 1024) {
+            setFov(35); // Tablet view
+         } else {
+            setFov(20); // Desktop view
+         }
+      };
+
+      updateFov(); // Set FOV on mount
+      window.addEventListener('resize', updateFov); // Update FOV on resize
+
+      return () => window.removeEventListener('resize', updateFov);
+   }, []);
+
    return (
-      <div className='w-full h-screen bg-black'>
-         <Canvas camera={{ fov: 20 }}>
-            {/* <OrbitControls enableZoom={false} /> */}
+      <div className="w-full h-screen bg-black">
+         <Canvas camera={{ fov }}>
             <ambientLight />
             <Scene />
-            {/* <EffectComposer>
-               <Bloom
-                  mipmapBlur
-                  intensity={6.5} // The bloom intensity.
-                  luminanceThreshold={0.6}
-                  // luminanceThreshold={0.36} // luminance threshold. Raise this value to mask out darker elements in the scene.
-                  luminanceSmoothing={0.3} // smoothness of the luminance threshold. Range is [0, 1]
-               />
-               <ToneMapping adaptive />
-            </EffectComposer> */}
          </Canvas>
       </div>
-   )
-}
+   );
+};
 
-export default Circular
+export default Circular;

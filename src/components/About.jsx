@@ -139,37 +139,41 @@ const About = () => {
          <div className='w-full flex justify-center mb-10'>
             <AnimatedPath />
          </div>
-         <div className='w-3/4 h-auto text-white text-center text-[38px] leading-snug font-space font-thin relative mb-48'>
+
+         <div className='w-3/4 h-auto text-white text-center flex flex-col items-center text-[24px] md:text-[38px] leading-snug font-space font-thin relative mb-20'>
             <p ref={textRef}>I create seamless, pixel-perfect websites that blend modern design with efficient, functional code to deliver engaging and memorable user experiences.</p>
-            <div
-               id="exploreBtn"
-               className='bg-white p-10 text-[20px] uppercase w-[250px] whitespace-nowrap text-black rounded-2xl absolute top-[120%] left-[10%] font-space font-normal'
-               style={{
-                  transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
-                  transition: 'transform 0.09s ease-out',
-                  cursor: 'none'
-               }}
-               onClick={() => window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8d2d6012-bb24-483d-a7e8-884c7c720032', '_blank')}
-               onMouseEnter={() => setIsHovered(true)}
-               onMouseLeave={() => setIsHovered(false)}
-            >
-               Resume
-            </div>
-            <div
-               id="resumebtn"
-               className='rounded-2xl absolute top-[120%] right-[10%] whitespace-nowrap font-space font-normal'
-               style={{
-                  transform: `translate(${resumeButtonPosition.x}px, ${resumeButtonPosition.y}px)`,
-                  transition: 'transform 0.09s ease-out',
-                  cursor: 'none'
-               }}
-               onClick={() => window.location.href = '/projects'}
-               onMouseEnter={() => setIsResumeHovered(true)}
-               onMouseLeave={() => setIsResumeHovered(false)}
-            >
-               <StarBorder className='cursor-none'>
-                  Explore Project
-               </StarBorder>
+
+            <div className='w-3/4 flex flex-wrap gap-5 justify-evenly items-center mt-10'>
+               <div
+                  id="exploreBtn"
+                  className='bg-white md:p-10 p-5 md:text-[20px] text-[12px] uppercase w-[250px] whitespace-nowrap text-black rounded-2xl font-space font-normal'
+                  style={{
+                     transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
+                     transition: 'transform 0.09s ease-out',
+                     cursor: 'none'
+                  }}
+                  onClick={() => window.open('https://acrobat.adobe.com/id/urn:aaid:sc:ap:8d2d6012-bb24-483d-a7e8-884c7c720032', '_blank')}
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+               >
+                  Resume
+               </div>
+               <div
+                  id="resumebtn"
+                  className='rounded-2xl whitespace-nowrap font-space font-normal'
+                  style={{
+                     transform: `translate(${resumeButtonPosition.x}px, ${resumeButtonPosition.y}px)`,
+                     transition: 'transform 0.09s ease-out',
+                     cursor: 'none'
+                  }}
+                  onClick={() => window.location.href = '/projects'}
+                  onMouseEnter={() => setIsResumeHovered(true)}
+                  onMouseLeave={() => setIsResumeHovered(false)}
+               >
+                  <StarBorder className='cursor-none'>
+                     Explore Project
+                  </StarBorder>
+               </div>
             </div>
          </div>
       </div>

@@ -31,7 +31,7 @@ const StickyScroll = ({ content }) => {
    };
 
    return (
-      <div ref={ref} onScroll={handleScroll} className="h-[30rem] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10 scrollbar-hide">
+      <div ref={ref} onScroll={handleScroll} className="h-[100vh] overflow-y-auto flex justify-center relative space-x-10 rounded-md p-10 scrollbar-hide">
          <div className="relative flex items-start px-4">
             <div className="max-w-2xl">
                {content.map((item, index) => (
@@ -64,7 +64,7 @@ const StickyScroll = ({ content }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
-                  className="w-full h-full"
+                  className="w-[100%] h-[80%]"
                >
                   {content[activeCard]?.content ?? null}
                </motion.div>
