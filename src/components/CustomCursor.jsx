@@ -1,108 +1,86 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
 
 const CustomCursor = () => {
    const cursorRef = useRef(null);
-   const ringRef = useRef(null);
+   const tooltipRef = useRef(null);
+   const [isHovered, setIsHovered] = useState(false);
 
    useEffect(() => {
       const cursor = cursorRef.current;
-      const ring = ringRef.current;
+      const tooltip = tooltipRef.current;
 
-      const updateCursorPosition = (e) => {
-         const { clientX: x, clientY: y } = e;
-
-         // Dot follows the cursor instantly
+      // Mouse move animation
+      const handleMouseMove = (e) => {
          gsap.to(cursor, {
-            duration: 0,
-            x,
-            y,
-            ease: 'power2.out',
+            x: e.clientX,
+            y: e.clientY,
+            ease: "power3.out",
+            duration: 0.15,
          });
 
-         // Ring follows with a delay for a trailing effect
-         gsap.to(ring, {
-            duration: 0.5,
-            x,
-            y,
-            ease: 'power2.out',
+         gsap.to(tooltip, {
+            x: e.clientX + 15, // Offset to avoid overlap
+            y: e.clientY - 30,
+            ease: "power3.out",
+            duration: 0.15,
          });
       };
 
-      const handleMouseEnter = (e) => {
-         if (e.target.classList.contains('projectImg')) {
-            gsap.to(ring, {
-               scale: 5,
-               duration: 0.3,
-               backgroundColor: 'black',
-               color: 'white',
-               border: 0,
-            });
-            ring.innerHTML = '<span class="text-white text-[6px]">Click Me</span>';
-            cursor.style.display = 'none';
-         }
+      // Hover effect
+      const handleMouseEnter = () => {
+         setIsHovered(true);
+         gsap.to(tooltip, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
       };
 
+      // Remove hover effect
       const handleMouseLeave = () => {
-         gsap.to(ring, {
-            scale: 1,
-            duration: 0.3,
-            backgroundColor: 'transparent',
-            borderWidth: '2px',
-            borderColor: 'white',
-         });
-         ring.innerHTML = '';
-         cursor.style.display = 'block';
+         setIsHovered(false);
+         gsap.to(tooltip, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
       };
 
-      window.addEventListener('mousemove', updateCursorPosition);
-
-      // Add event listeners for all elements with projectImg class
-      const observer = new MutationObserver((mutations) => {
-         mutations.forEach((mutation) => {
-            if (mutation.addedNodes.length) {
-               document.querySelectorAll('.projectImg').forEach((img) => {
-                  img.addEventListener('mouseenter', handleMouseEnter);
-                  img.addEventListener('mouseleave', handleMouseLeave);
-               });
-            }
-         });
+      // Attach event listeners
+      document.addEventListener("mousemove", handleMouseMove);
+      document.querySelectorAll(".projectImg").forEach((el) => {
+         el.addEventListener("mouseenter", handleMouseEnter);
+         el.addEventListener("mouseleave", handleMouseLeave);
       });
 
-      // Initial setup for existing elements
-      document.querySelectorAll('.projectImg').forEach((img) => {
-         img.addEventListener('mouseenter', handleMouseEnter);
-         img.addEventListener('mouseleave', handleMouseLeave);
-      });
-
-      // Start observing the document for dynamically added elements
-      observer.observe(document.body, {
-         childList: true,
-         subtree: true
-      });
-
+      // Cleanup listeners
       return () => {
-         window.removeEventListener('mousemove', updateCursorPosition);
-         document.querySelectorAll('.projectImg').forEach((img) => {
-            img.removeEventListener('mouseenter', handleMouseEnter);
-            img.removeEventListener('mouseleave', handleMouseLeave);
+         document.removeEventListener("mousemove", handleMouseMove);
+         document.querySelectorAll(".projectImg").forEach((el) => {
+            el.removeEventListener("mouseenter", handleMouseEnter);
+            el.removeEventListener("mouseleave", handleMouseLeave);
          });
-         observer.disconnect();
       };
    }, []);
 
    return (
       <>
+         {/* Custom Cursor */}
          <div
             ref={cursorRef}
-            className="fixed w-3 h-3 bg-white rounded-full pointer-events-none z-50"
-            style={{ transform: 'translate(-50%, -50%)' }}
-         />
+            className="fixed top-0 left-0 z-[9999] pointer-events-none -translate-x-1/2 -translate-y-1/2"
+         >
+            <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
+               <polygon
+                  points="10,10 90,30 40,40 30,90 10,10"
+                  fill="black"
+                  stroke="white"
+                  strokeWidth="5"
+               />
+            </svg>
+         </div>
+
+         {/* Tooltip (Visible Only on projectImg Hover) */}
          <div
-            ref={ringRef}
-            className="fixed w-8 h-8 border-2 border-white rounded-full pointer-events-none z-50 flex items-center justify-center"
-            style={{ transform: 'translate(-50%, -50%)' }}
-         />
+            ref={tooltipRef}
+            className="fixed top-0 left-0 z-[9999] pointer-events-none bg-black text-white text-xs px-2 py-1 rounded opacity-0 scale-75 transition-transform"
+            style={{ whiteSpace: "nowrap" }}
+         >
+            Click Here
+         </div>
       </>
    );
 };

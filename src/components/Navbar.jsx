@@ -77,6 +77,7 @@ const Navbar = () => {
             <li>
                <a
                   href="#about"
+                  data-link="About"
                   className="relative group text-xl cursor-none"
                   onClick={(e) => {
                      e.preventDefault();
@@ -91,12 +92,12 @@ const Navbar = () => {
                </a>
             </li>
             <li>
-               <a href="/projects" className="relative group text-xl cursor-none">
+               <a href="/projects" data-link="Portfolio" className="relative group text-xl cursor-none">
                   <span ref={portfolioRef} className="inline-block">Portfolio</span>
                </a>
             </li>
             <li>
-               <a href="/contact" className="relative group text-xl cursor-none">
+               <a href="/contact" data-link="Contact" className="relative group text-xl cursor-none">
                   <span ref={contactRef} className="inline-block">Contact</span>
                </a>
             </li>
@@ -112,12 +113,12 @@ const Navbar = () => {
          {/* Mobile Menu */}
          <div
             ref={menuRef}
-            className={`fixed top-0 left-0 w-full h-screen z-20 bg-black flex flex-col items-center justify-center transform transition-transform duration-500 ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}
+            className={`fixed top-0 left-0 w-full h-screen z-20 bg-black flex flex-col items-center justify-center transform transition-transform duration-500 ${menuOpen ? "translate-y-0" : "-translate-y-full"}`}
          >
-            <ul className="flex flex-col gap-8 text-3xl">
-               <li><a href="#about" className="cursor-pointer" onClick={() => setMenuOpen(false)}>About</a></li>
-               <li><a href="/projects" className="cursor-pointer" onClick={() => setMenuOpen(false)}>Portfolio</a></li>
-               <li><a href="/contact" className="cursor-pointer" onClick={() => setMenuOpen(false)}>Contact</a></li>
+            <ul className="flex flex-col gap-8 text-3xl text-center">
+               <li><a href="#about" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>About</a></li>
+               <li><a href="/projects" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>Portfolio</a></li>
+               <li><a href="/contact" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>Contact</a></li>
             </ul>
          </div>
       </nav>

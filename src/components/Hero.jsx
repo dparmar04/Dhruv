@@ -120,7 +120,7 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
                   </div>
 
                   {/* Responsive Scroll Indicator */}
-                  <div className="absolute bottom-10 sm:bottom-28 left-1/2 w-max justify-center items-center flex flex-col gap-y-2 transform -translate-x-1/2">
+                  <div className="absolute bottom-10 sm:bottom-28 left-1/2 w-max justify-center items-center flex flex-col gap-y-2 transform -translate-x-1/2 sm:hidden md:block ">
                      <div className="absolute rounded-full bg-white"></div>
                      <div className='textround w-[80%] sm:w-[60%] md:w-[40%] relative'>
                         <svg viewBox="0 0 300 300" className="w-full">

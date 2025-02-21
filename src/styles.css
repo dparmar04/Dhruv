@@ -10,7 +10,6 @@ body,
 #root {
    background-color: black;
 }
-
 a[data-link]::after {
    content: attr(data-link);
    position: absolute;

@@ -6,6 +6,21 @@ import StickyScroll from './StickyScroll';
 import StarBorder from './StarBorder';
 
 const Portfolio = () => {
+   const stickyRef = useRef(null);
+   useEffect(() => {
+      let ctx = gsap.context(() => {
+         ScrollTrigger.create({
+            trigger: stickyRef.current,
+            start: "top top",
+            end: "bottom bottom",
+            pin: true, // Keeps the section pinned until scroll is completed
+            scrub: true,
+         });
+      });
+      return () => ctx.revert();
+   }, []);
+
+
    const content = [
       {
          title: "Celestara",
@@ -14,7 +29,7 @@ const Portfolio = () => {
             <img
                src="/photo1.png"
                alt="Project 1"
-               className="projectImg w-full h-full object-cover p-2 rounded-3xl "
+               className="projectImg w-full h-full object-contain rounded-3xl "
             />
          </a>,
       },
@@ -22,12 +37,13 @@ const Portfolio = () => {
          title: "HealDoc",
          description: "As a Frontend Developer, I designed and developed the entire website from scratch using React.js, ensuring a smooth user experience and responsive design.",
          content:
-            <a href="https://healdoc.ai/" target='_blank' className='cursor-none'   > <img src="/photo2.png" alt="Project 2" className="projectImg w-full h-full object-cover rounded-3xl" /> </a>,
+            <a href="https://healdoc.ai/" target='_blank' className='cursor-none'   >
+               <img src="/photo2.png" alt="Project 2" className="projectImg w-full h-full object-contain rounded-3xl" /> </a>,
       },
       {
          title: "Helverse",
          description: "It features a modern, clean design with smooth transitions and animations, creating an appealing user experience.",
-         content: <a href="https://helverse.netlify.app/" target='_blank' className='cursor-none'> <img src="/photo3.png" alt="Project 3" className="projectImg w-full h-full object-cover rounded-3xl" /> </a>,
+         content: <a href="https://helverse.netlify.app/" target='_blank' className='cursor-none'> <img src="/photo3.png" alt="Project 3" className="projectImg w-full h-full object-contain rounded-3xl" /> </a>,
       },
    ];
 
@@ -51,11 +67,11 @@ const Portfolio = () => {
             {/* Marquee */}
             <div className='overflow-hidden py-10'>
                <div className='marquee-container relative whitespace-nowrap transform -rotate-3'>
-                  <div className='inline-flex items-center space-x-8 bg-white py-6'>
-                     {[1, 2, 3, 4, 5].map((_, i) => (
-                        <div key={i} className='marquee flex items-center flex-shrink-0  gap-4'>
-                           <h1 className='text-black text-5xl font-bold'>FEATURED WORK</h1>
-                           <img src="/Arrow.svg" alt="Arrow" className='img w-16 rotate-180' />
+                  <div className='inline-flex items-center space-x-8 bg-white py-4'>
+                     {[1, 2, 3, 4, 5, 6].map((_, i) => (
+                        <div key={i} className='marquee flex items-center flex-shrink-0 gap-4'>
+                           <h1 className='text-black text-4xl font-bold'>FEATURED WORK</h1>
+                           <img src="/Arrow.svg" alt="Arrow" className='img w-10 rotate-180' />
                         </div>
                      ))}
                   </div>
@@ -63,30 +79,10 @@ const Portfolio = () => {
             </div>
 
             {/* Portfolio */}
-            <div className='w-full h-auto relative'>
-               <div
-                  className="sticky-scroll-container w-full h-screen relative"
-                  style={{ overflow: "hidden" }}
-               >
-                  {/* StickyScroll occupies full height when section reaches top */}
-                  <div
-                     className="sticky-scroll-content w-full h-full sticky top-0 overflow-y-scroll"
-                     style={{
-                        display: "flex",
-                        flexDirection: "column",
-                     }}
-                  >
-                     <StickyScroll content={content} />
-                  </div>
-               </div>
-               <div className='flex flex-col items-center my-10'>
-                  <p className='text-white text-2xl font-space my-4'>Create, Innovate, Dominate – Contact Now!</p>
-                  <StarBorder onClick={() => window.location.href = '/contact'}>
-                     Get in touch
-                  </StarBorder>
-               </div>
+            <div ref={stickyRef} className="relative h-full">
+               <StickyScroll content={content} />
             </div>
-         </div>
+         </div >
       </div>
    );
 };
