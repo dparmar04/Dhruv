@@ -66,7 +66,7 @@ const Navbar = () => {
          {/* Logo */}
          <h1
             onClick={() => window.location.href = '/'}
-            className="text-4xl font-bold cursor-pointer"
+            className="text-4xl font-bold cursor-none"
             ref={titleRef}
          >
             Portfolio

@@ -3,14 +3,12 @@ import { gsap } from "gsap";
 
 const CustomCursor = () => {
    const cursorRef = useRef(null);
-   const tooltipRef = useRef(null);
    const [isHovered, setIsHovered] = useState(false);
-
+   const [cursorText, setCursorText] = useState("");
    useEffect(() => {
       const cursor = cursorRef.current;
-      const tooltip = tooltipRef.current;
 
-      // Mouse move animation
+      // Move cursor smoothly with the mouse
       const handleMouseMove = (e) => {
          gsap.to(cursor, {
             x: e.clientX,
@@ -18,70 +16,77 @@ const CustomCursor = () => {
             ease: "power3.out",
             duration: 0.15,
          });
-
-         gsap.to(tooltip, {
-            x: e.clientX + 15, // Offset to avoid overlap
-            y: e.clientY - 30,
-            ease: "power3.out",
-            duration: 0.15,
-         });
       };
 
-      // Hover effect
+      // Scale and bounce effect for clickable elements
       const handleMouseEnter = () => {
          setIsHovered(true);
-         gsap.to(tooltip, { opacity: 1, scale: 1, duration: 0.3, ease: "power3.out" });
+         setCursorText("Click");
+         gsap.to(cursor, {
+            scale: 1.5,
+            duration: 0.3,
+            ease: "power3.out",
+            yoyo: true,
+            repeat: 1,
+         });
       };
 
-      // Remove hover effect
       const handleMouseLeave = () => {
          setIsHovered(false);
-         gsap.to(tooltip, { opacity: 0, scale: 0.8, duration: 0.3, ease: "power3.out" });
+         gsap.to(cursor, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power3.out",
+         });
       };
 
-      // Attach event listeners
       document.addEventListener("mousemove", handleMouseMove);
-      document.querySelectorAll(".projectImg").forEach((el) => {
-         el.addEventListener("mouseenter", handleMouseEnter);
-         el.addEventListener("mouseleave", handleMouseLeave);
+
+      // Attach event listeners dynamically to avoid missing elements
+      const addHoverListeners = () => {
+         document.querySelectorAll(".projectImg").forEach((el) => {
+            el.addEventListener("mouseenter", handleMouseEnter);
+            el.addEventListener("mouseleave", handleMouseLeave);
+         });
+      };
+
+      addHoverListeners(); // Initial attachment
+
+      // MutationObserver to detect dynamically added elements
+      const observer = new MutationObserver(() => {
+         addHoverListeners(); // Re-attach on content updates
       });
 
-      // Cleanup listeners
+      observer.observe(document.body, { childList: true, subtree: true });
+
       return () => {
          document.removeEventListener("mousemove", handleMouseMove);
-         document.querySelectorAll(".projectImg").forEach((el) => {
-            el.removeEventListener("mouseenter", handleMouseEnter);
-            el.removeEventListener("mouseleave", handleMouseLeave);
-         });
+         observer.disconnect();
       };
    }, []);
 
    return (
-      <>
-         {/* Custom Cursor */}
-         <div
-            ref={cursorRef}
-            className="fixed top-0 left-0 z-[9999] pointer-events-none -translate-x-1/2 -translate-y-1/2"
-         >
-            <svg width="30" height="30" viewBox="0 0 100 100" fill="none">
-               <polygon
-                  points="10,10 90,30 40,40 30,90 10,10"
-                  fill="black"
-                  stroke="white"
-                  strokeWidth="5"
-               />
+      <div
+         ref={cursorRef}
+         className="fixed top-0 left-0 z-[9999] pointer-events-none flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
+         style={{ width: "30px", height: "30px", transition: "width 0.2s, height 0.2s" }}
+      >
+         {isHovered ? (
+            <div className="w-[60px] h-[30px] bg-black p-2 text-white text-s flex items-center justify-center rounded mix-blend-difference bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-cyan-400">
+               {cursorText}
+            </div>
+         ) : (
+            <svg
+               className={`transition-transform ${isHovered ? "scale-150" : "scale-200"}`}
+               width="30"
+               height="30"
+               viewBox="0 0 100 100"
+               fill="none"
+            >
+               <polygon points="10,10 90,30 40,40 30,90 10,10" fill="black" stroke="white" strokeWidth="5" />
             </svg>
-         </div>
-
-         {/* Tooltip (Visible Only on projectImg Hover) */}
-         <div
-            ref={tooltipRef}
-            className="fixed top-0 left-0 z-[9999] pointer-events-none bg-black text-white text-xs px-2 py-1 rounded opacity-0 scale-75 transition-transform"
-            style={{ whiteSpace: "nowrap" }}
-         >
-            Click Here
-         </div>
-      </>
+         )}
+      </div>
    );
 };
 
