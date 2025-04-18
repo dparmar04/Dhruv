@@ -5,7 +5,7 @@ import Navbar from './components/Navbar'
 // import Background from './components/Background'
 import About from './components/About'
 // import ScrollSections from './components/ScrollSections.jsx'
-// import CustomCursor from './components/CustomCursor'
+import CustomCursor from './components/CustomCursor'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Contact from './components/Contact'
 
@@ -17,7 +17,7 @@ const App = () => {
         alt="Logo"
         className="hidden md:w-20 h-20 fixed cursor-none rounded-full z-20 !opacity-100 right-4 bottom-4"
       />
-      {/* {window.innerWidth > 1024 && <CustomCursor />} */}
+      {window.innerWidth > 1024 && <CustomCursor />}
       <BrowserRouter >
         <Navbar />
         <Routes>

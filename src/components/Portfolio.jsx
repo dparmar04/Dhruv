@@ -135,7 +135,7 @@ const Portfolio = () => {
                   custom={index + 0.5}
                 >
                   {/* Glow blob - appears when hovering desc */}
-                  <div className="absolute -top-6 -left-6 w-40 h-40 bg-white/30 backdrop-blur-xl rounded-full opacity-0 group-hover/desc:opacity-100 transition-opacity duration-500 blur-2xl pointer-events-none z-0" />
+                  <div className="absolute -top-6 w-full h-10 bg-white/30 backdrop-blur-xl rounded-full opacity-0 group-hover/desc:opacity-100 transition-opacity duration-500 blur-2xl pointer-events-none z-0" />
 
                   {/* Glassmorphism container */}
                   <div className="relative z-10 bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
