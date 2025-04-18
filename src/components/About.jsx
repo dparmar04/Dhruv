@@ -144,8 +144,10 @@ const About = () => {
       <div className='w-3/4 h-auto text-white text-center flex flex-col items-center text-[24px] md:text-[38px] leading-snug font-space font-thin relative mb-20'>
         <p ref={textRef}>I create seamless, pixel-perfect websites that blend modern design with efficient, functional code to deliver engaging and memorable user experiences.</p>
 
-        <div className='w-3/4 flex flex-wrap gap-5 justify-evenly items-center mt-10'>
-          <div id="exploreBtn" className='bg-white md:p-10 p-5 md:text-[20px] text-[12px] uppercase w-[250px] whitespace-nowrap text-black rounded-2xl font-space font-normal'
+        <div className='w-full flex flex-wrap gap-5 justify-center items-center mt-10 px-4'>
+          <div
+            id="exploreBtn"
+            className='bg-white p-4 md:p-10 text-[12px] md:text-[18px] uppercase min-w-[160px] max-w-[250px] w-full text-center text-black rounded-2xl font-space font-normal'
             style={{
               transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
               transition: 'transform 0.09s ease-out',
@@ -158,7 +160,9 @@ const About = () => {
             Resume
           </div>
 
-          <div id="resumebtn" className='rounded-2xl  whitespace-nowrap font-space font-normal'
+          <div
+            id="resumebtn"
+            className='rounded-2xl min-w-[160px] max-w-[250px] w-full  text-center'
             style={{
               transform: `translate(${resumeButtonPosition.x}px, ${resumeButtonPosition.y}px)`,
               transition: 'transform 0.09s ease-out',
@@ -173,6 +177,8 @@ const About = () => {
             </StarBorder>
           </div>
         </div>
+
+
       </div>
     </div>
   )

@@ -1,25 +1,37 @@
-import { Canvas } from '@react-three/fiber';
-// import './styles.css'
+import { Canvas, useThree } from '@react-three/fiber';
 import BackScene from './BackScene';
-import { Suspense } from "react";
+import { Suspense, useEffect } from 'react';
+
+const CameraAdjuster = () => {
+  const { size, camera } = useThree();
+
+  useEffect(() => {
+    if (size.width < 768) {
+      camera.position.set(2, 0, 10); // farther back for small screens
+      camera.fov = 80;
+    } else {
+      camera.position.set(0, 0, 10); // default for larger screens
+      camera.fov = 35;
+    }
+    camera.updateProjectionMatrix();
+  }, [size, camera]);
+
+  return null; // This component just adjusts the camera
+};
 
 const Background = () => {
   return (
-    <Canvas camera={{ fov: 35, position: [0, 0, 10] }}>
+    <Canvas
+      camera={{ fov: 35, position: [0, 0, 10] }}
+      style={{ width: '100vw', height: '100vh' }}
+    >
       <Suspense fallback={null}>
         <ambientLight />
+        <CameraAdjuster />
         <BackScene />
-        {/* <EffectComposer>
-            <Bloom
-               mipmapBlur
-               intensity={1.5} // Increased bloom intensity
-               luminanceThreshold={0.5} // Lowered threshold to catch more light
-               luminanceSmoothing={0.2}
-            />
-         </EffectComposer> */}
       </Suspense>
     </Canvas>
-  )
-}
+  );
+};
 
-export default Background
+export default Background;

@@ -89,18 +89,17 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
   }, [isLoaded]);
 
   return (
-    <div className='w-full relative h-screen flex flex-row bg-black'>
+    <div className='w-full overflow-x-hidden relative h-screen flex flex-row bg-black'>
       {!isLoaded && <Loader onComplete={handleLoadingComplete} />}
 
       {isCanvasRendered && (
-        <div className="w-full h-full absolute top-0 left-0">
+        <div className="w-full h-screen absolute top-0 left-0">
           <Background />
         </div>
       )}
 
       {isLoaded && (
         <>
-        
           <div className='relative greeting w-full text-white h-full font-bold flex flex-col items-start justify-center text-left pl-4 sm:pl-12 md:pl-28 z-10'>
             {/* Responsive Heading */}
             <h1 className='text-5xl sm:text-7xl md:text-8xl lg:text-9xl' ref={headingRef}>
