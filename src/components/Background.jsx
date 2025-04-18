@@ -1,17 +1,15 @@
-import React from 'react';
 import { Canvas } from '@react-three/fiber';
 // import './styles.css'
-import { OrbitControls } from '@react-three/drei';
 import BackScene from './BackScene';
 import { Suspense } from "react";
 
 const Background = () => {
-   return (
-      <Canvas camera={{ fov: 25, position: [0, 0, 10] }}>
-         <Suspense fallback={null}>
-            <ambientLight intensity={1.5} />
-            <BackScene />
-            {/* <EffectComposer>
+  return (
+    <Canvas camera={{ fov: 35, position: [0, 0, 10] }}>
+      <Suspense fallback={null}>
+        <ambientLight />
+        <BackScene />
+        {/* <EffectComposer>
             <Bloom
                mipmapBlur
                intensity={1.5} // Increased bloom intensity
@@ -19,9 +17,9 @@ const Background = () => {
                luminanceSmoothing={0.2}
             />
          </EffectComposer> */}
-         </Suspense>
-      </Canvas>
-   )
+      </Suspense>
+    </Canvas>
+  )
 }
 
 export default Background
