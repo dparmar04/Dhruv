@@ -1,36 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { useEffect } from 'react';
+import { Canvas, useThree } from '@react-three/fiber';
 import Scene from './Scene';
 
+
+const CameraAdjuster = () => {
+  const { size, camera } = useThree();
+
+  useEffect(() => {
+    if (size.width < 768) {
+      camera.fov = 35;
+    } else {
+      camera.fov = 20;
+    }
+    camera.updateProjectionMatrix();
+  }, [size, camera]);
+
+  return null; // This component just adjusts the camera
+};
+
 const Circular = () => {
-   const [fov, setFov] = useState(20); // Default FOV
 
-   useEffect(() => {
-      const updateFov = () => {
-         const width = window.innerWidth;
-         if (width < 640) {
-            setFov(50); // Mobile view (small screens)
-         } else if (width < 1024) {
-            setFov(35); // Tablet view
-         } else {
-            setFov(20); // Desktop view
-         }
-      };
 
-      updateFov(); // Set FOV on mount
-      window.addEventListener('resize', updateFov); // Update FOV on resize
-
-      return () => window.removeEventListener('resize', updateFov);
-   }, []);
-
-   return (
-      <div className="w-full h-screen bg-black">
-         <Canvas camera={{ fov }}>
-            <ambientLight />
-            <Scene />
-         </Canvas>
-      </div>
-   );
+  return (
+    <div className="w-full h-[50vh] md:h-screen bg-black">
+      <Canvas camera={{ fov: 35 }}>
+        <ambientLight />
+        <CameraAdjuster />
+        <Scene />
+      </Canvas>
+    </div>
+  );
 };
 
 export default Circular;

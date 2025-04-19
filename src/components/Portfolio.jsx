@@ -43,6 +43,12 @@ const Portfolio = () => {
       image: "/photo3.png",
     },
   ];
+  // const glowGradients = [
+  //   'radial-gradient(50% 50% at 50% 50%, #d1d1d1 0%, rgba(0, 201, 255, 0) 100%)',
+  //   'radial-gradient(50% 50% at 50% 50%, #763CAC 0%, rgba(50, 15, 133, 0) 100%)',
+  //   'radial-gradient(50% 50% at 50% 50%, #190e57 0%, rgba(255, 97, 166, 0) 100%)'
+  // ];
+
 
   const fadeInVariants = {
     hidden: { opacity: 0, y: 40 },
@@ -69,7 +75,7 @@ const Portfolio = () => {
 
   return (
     <div className="bg-black min-h-screen">
-      <div className='w-full h-screen overflow-hidden'>
+      <div className='w-full h-full md:h-screen overflow-hidden'>
         <Circular />
       </div>
 
@@ -99,7 +105,7 @@ const Portfolio = () => {
 
 
         {/* Portfolio */}
-        <div className="relative h-full">
+        <div className="relative h-full mt-10">
           {/* <StickyScroll content={content} /> */}
           <div className="flex flex-col gap-20 max-w-6xl mx-auto">
             {projects.map((project, index) => (
@@ -121,28 +127,45 @@ const Portfolio = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-64 md:h-80 object-cover rounded-3xl border border-white/10 "
+                    className="w-full h-64 md:h-80 object-cover relative rounded-3xl border border-white/10 z-20"
                   />
+                  {/* Glow blob - appears when hovering desc */}
+                  <div className="md:absolute absolute md:-top-10 md:-left-36 w-[90vw] md:w-[800px] h-[300px] md:h-[500px] flex-shrink-0 rounded-[641px] opacity-40 md:opacity-100 group-hover/desc:opacity-100 transition-opacity duration-500 pointer-events-none z-0 mx-auto md:mx-0"
+                    style={{ background: 'radial-gradient(50% 50% at 50% 50%, #763CAC 0%, rgba(50, 15, 133, 0) 100%)' }}
+                  />
+                  {/* <div
+                    className={`md:absolute md:-top-10 ${index % 2 === 0 ? 'md:-left-32' : 'md:-right-36'} w-[90vw] md:w-[600px] h-[300px] md:h-[500px] flex-shrink-0 rounded-[641px] opacity-40 md:opacity-100 group-hover/desc:opacity-100 transition-opacity duration-500 pointer-events-none z-0 mx-auto md:mx-0`}
+                    style={{
+                      background: glowGradients[index % glowGradients.length],
+                    }}
+                  /> */}
+
+
+
                 </motion.a>
 
                 {/* Description box + glassmorphism + glow */}
                 <motion.div
-                  className="relative w-full md:w-1/2 px-4 group/desc"
+                  className="relative w-full md:w-1/2 px-4 group/desc flex md:block justify-center"
                   variants={fadeInVariants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.3 }}
                   custom={index + 0.5}
                 >
-                  {/* Glow blob - appears when hovering desc */}
-                  <div className="absolute -top-6 w-full h-10 bg-white/30 backdrop-blur-xl rounded-full opacity-0 group-hover/desc:opacity-100 transition-opacity duration-500 blur-2xl pointer-events-none z-0" />
-
                   {/* Glassmorphism container */}
-                  <div className="relative z-10 bg-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/10">
+                  <div
+                    className={`md:absolute md:-top-20 md:-left-20 ${index % 2 === 0 ? 'md:-left-20' : 'md:-right-20'}  rounded-[14px] p-6 border border-white/10 backdrop-blur-[40px] z-50 w-full md:w-auto`}
+                    style={{
+                      background: `radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(118, 60, 172, 0.20) 0%, rgba(110, 191, 244, 0.04) 77.08%, rgba(70, 144, 212, 0.00) 100%)`,
+                      backgroundBlendMode: 'overlay, normal'
+                    }}
+                  >
                     <h3 className="text-2xl font-semibold font-space mb-3 text-white">{project.title}</h3>
                     <p className="text-gray-300 font-space-light text-base">{project.description}</p>
                   </div>
                 </motion.div>
+
               </motion.div>
             ))}
           </div>
