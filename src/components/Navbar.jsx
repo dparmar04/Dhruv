@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTheme } from './ThemeContext';
+import { Sun, Moon } from 'lucide-react'; // Or any icons you like
 import gsap from 'gsap';
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const aboutRef = useRef(null);
   const portfolioRef = useRef(null);
@@ -10,7 +13,6 @@ const Navbar = () => {
   const menuRef = useRef(null);
 
   useEffect(() => {
-    const tl = gsap.timeline();
 
     // Helper function to animate text
     const animateText = (ref) => {
@@ -26,10 +28,6 @@ const Navbar = () => {
       return chars;
     };
 
-    // Animate each nav item
-    const aboutChars = animateText(aboutRef);
-    const portfolioChars = animateText(portfolioRef);
-    const contactChars = animateText(contactRef);
     const titleChars = animateText(titleRef);
 
     // Animate title with wave effect
@@ -47,22 +45,11 @@ const Navbar = () => {
       duration: 0.5
     });
 
-    // Sequence animations with downward direction
-    tl.fromTo([aboutChars, portfolioChars, contactChars], {
-      opacity: 0,
-      y: -100
-    }, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      stagger: 0.05,
-      ease: "power4.out"
-    }, 0);
 
   }, []);
 
   return (
-    <nav className="w-full text-white px-6 py-4 flex items-center justify-between relative bg-black">
+    <nav className="w-full text-black bg-white dark:bg-black dark:text-white  px-6 py-4 flex items-center justify-between relative transition-colors duration-500">
       {/* Logo */}
       <h1
         onClick={() => window.location.href = '/'}
@@ -99,19 +86,23 @@ const Navbar = () => {
           </a>
         </li>
       </ul>
+      <button
+        onClick={toggleTheme}
+        className="p-2 rounded-full border cursor-none dark:border-white border-black hover:scale-110 transition-transform"
+        aria-label="Toggle Theme"
+      >
+        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      </button>
 
       {/* Mobile Menu Button */}
       <div className="md:hidden z-50 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
-        <div className={`w-8 h-1 rounded-md bg-white mb-2 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2.5" : ""}`} />
-        <div className={`w-8 h-1 rounded-md bg-white mb-2 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-        <div className={`w-8 h-1 rounded-md bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2.5" : ""}`} />
+        <div className={`w-8 h-1 rounded-md bg-black dark:bg-white mb-2 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2.5" : ""}`} />
+        <div className={`w-8 h-1 rounded-md bg-black dark:bg-white mb-2 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+        <div className={`w-8 h-1 rounded-md bg-black dark:bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2.5" : ""}`} />
       </div>
 
       {/* Mobile Menu */}
-      <div
-        ref={menuRef}
-        className={`fixed top-0 left-0 w-full h-screen z-20 bg-black flex flex-col items-center justify-center transform transition-transform duration-500 ${menuOpen ? "translate-y-0" : "-translate-y-full"}`}
-      >
+      <div ref={menuRef} className={`fixed top-0 left-0 w-full h-screen z-40 bg-white dark:bg-black flex flex-col items-center justify-center transform transition-transform duration-500 ${menuOpen ? "translate-y-0" : "-translate-y-full"}`}>
         <ul className="flex flex-col gap-8 text-3xl text-center">
           <li><a href="#about" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>About</a></li>
           <li><a href="/projects" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>Portfolio</a></li>

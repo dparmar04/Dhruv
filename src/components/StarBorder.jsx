@@ -1,5 +1,4 @@
-import React from "react";
-
+/* eslint-disable react/prop-types */
 const StarBorder = ({
   as: Component = "button",
   className = "",
@@ -24,7 +23,7 @@ const StarBorder = ({
           animationDuration: speed,
         }}
       ></div>
-      <div className="relative md:p-10 p-5 md:text-[20px] text-[12px] uppercase w-[250px] z-1 bg-gradient-to-b from-black to-gray-900 border whitespace-nowrap border-gray-800 text-white text-center rounded-[20px]">
+      <div className="relative md:p-10 p-5 md:text-[20px] text-[12px] uppercase w-[250px] z-1 bg-gradient-to-b from-gray-100 to-gray-500 dark:bg-gradient-to-b dark:from-black dark:to-gray-900 border whitespace-nowrap border-gray-800 dark:text-white text-black text-center rounded-[20px]">
         {children}
       </div>
     </Component>

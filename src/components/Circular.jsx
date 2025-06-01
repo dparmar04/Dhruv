@@ -22,7 +22,7 @@ const Circular = () => {
 
 
   return (
-    <div className="w-full h-[50vh] md:h-screen bg-black">
+    <div className="w-full h-[50vh] md:h-screen bg-white dark:bg-black transition-colors duration-500">
       <Canvas camera={{ fov: 35 }}>
         <ambientLight />
         <CameraAdjuster />

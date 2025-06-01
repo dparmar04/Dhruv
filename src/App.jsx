@@ -8,8 +8,13 @@ import About from './components/About'
 import CustomCursor from './components/CustomCursor'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Contact from './components/Contact'
+import useLenis from './components/useLenis'
+
+
 
 const App = () => {
+  useLenis();
+
   return (
     <div>
       <img

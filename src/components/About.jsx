@@ -136,18 +136,18 @@ const About = () => {
   }, [isHovered, isResumeHovered]);
 
   return (
-    <div id='about' className='w-full min-h-screen bg-black flex flex-col items-center relative py-20'>
-      <div className='w-full flex justify-center mb-10'>
+    <div id='about' className='w-full min-h-screen bg-white text-black dark:bg-black dark:text-white flex flex-col items-center relative py-20 transition-colors duration-500'>
+      <div className='w-full flex justify-center mb-10 '>
         <AnimatedPath />
       </div>
 
-      <div className='w-3/4 h-auto text-white text-center flex flex-col items-center text-[24px] md:text-[38px] leading-snug font-space font-thin relative mb-20'>
+      <div className='w-3/4 h-auto text-center flex flex-col items-center text-[24px] md:text-[38px] leading-snug font-space font-thin relative mb-20'>
         <p ref={textRef}>I create seamless, pixel-perfect websites that blend modern design with efficient, functional code to deliver engaging and memorable user experiences.</p>
 
         <div className='w-full flex flex-wrap gap-5 justify-center items-center mt-10 px-4'>
           <div
             id="exploreBtn"
-            className='bg-white p-4 md:p-10 text-[12px] md:text-[18px] uppercase min-w-[160px] max-w-[250px] w-full text-center text-black rounded-2xl font-space font-normal'
+            className='dark:bg-white bg-black p-4 md:p-10 text-[12px] md:text-[18px] uppercase min-w-[160px] max-w-[250px] w-full text-center dark:text-black text-white rounded-2xl font-space font-normal'
             style={{
               transform: `translate(${buttonPosition.x}px, ${buttonPosition.y}px)`,
               transition: 'transform 0.09s ease-out',

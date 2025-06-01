@@ -75,21 +75,11 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
       duration: 1,
       stagger: 0.05,
       ease: "power4.out"
-    }, "-=0.8"); // Adjust timing to overlap with heading animation
-
-    const handleRotation = () => {
-      gsap.to(".textround", {
-        rotation: "+=360",
-        duration: 10,
-        repeat: -1,
-        ease: "none"
-      });
-    }
-    handleRotation();
+    }, "-=1"); // Adjust timing to overlap with heading animation
   }, [isLoaded]);
 
   return (
-    <div className='w-full overflow-x-hidden relative h-screen flex flex-row bg-black'>
+    <div className='w-full overflow-x-hidden relative h-screen flex flex-row bg-white text-black dark:bg-black dark:text-white transition-colors duration-500'>
       {!isLoaded && <Loader onComplete={handleLoadingComplete} />}
 
       {isCanvasRendered && (
@@ -100,15 +90,15 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
 
       {isLoaded && (
         <>
-          <div className='relative greeting w-full text-white h-full font-bold flex flex-col items-start justify-center text-left pl-4 sm:pl-12 md:pl-28 z-10'>
+          <div className='relative greeting w-full text-black dark:text-white h-full font-bold flex flex-col items-start justify-center text-left pl-4 sm:pl-12 md:pl-28 z-10'>
             {/* Responsive Heading */}
-            <h1 className='text-5xl sm:text-7xl md:text-8xl lg:text-9xl' ref={headingRef}>
+            <h1 className='text-5xl h-max overflow-hidden sm:text-7xl md:text-8xl lg:text-9xl' ref={headingRef}>
               Hi,I&apos;m Dhruv
             </h1>
 
             {/* Responsive Subheading */}
             <div
-              className={`text-[#b5b5b5a4] bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
+              className={`text-[#5b5353a4] dark:text-[#b5b5b5a4] bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
               style={{
                 backgroundImage: 'linear-gradient(120deg, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 60%)',
                 backgroundSize: '200% 100%',
@@ -116,16 +106,16 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
                 animationDuration: '2s',
               }}
             >
-              <p className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase my-3' ref={subHeadingRef}>
+              <p className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase my-3 h-max overflow-hidden' ref={subHeadingRef}>
                 <span className="inline-block">Front-end Developer</span>
               </p>
             </div>
 
             {/* Responsive Scroll Indicator */}
             <div className="absolute bottom-32 sm:bottom-28 left-1/2 transform -translate-x-1/2 w-max justify-center items-center flex flex-col gap-y-2 sm:hidden md:flex">
-              <button className="w-[30px] h-[50px] rounded-full flex items-center justify-center bg-transparent border-none outline outline-2 outline-[#c0c0c0] shadow-[0_0_30px_#c0c0c0] relative">
-                <div className="w-[5px] h-[10px] rounded-full bg-[#c0c0c0] shadow-[0_0_30px_#c0c0c0] animate-scroll"></div>
-                <span className="absolute top-[140%] text-[whitesmoke] whitespace-nowrap uppercase tracking-[1.5px] text-xs">scroll smoothly</span>
+              <button className="w-[30px] h-[50px] rounded-full flex items-center justify-center bg-transparent border-none outline outline-2 outline-black dark:outline-[#c0c0c0] shadow-[0_0_30px_#c0c0c0] relative">
+                <div className="w-[5px] h-[10px] rounded-full bg-black dark:bg-[#c0c0c0] shadow-[0_0_30px_#c0c0c0] animate-scroll"></div>
+                <span className="absolute top-[140%] text-black dark:text-[whitesmoke] whitespace-nowrap uppercase tracking-[1.5px] text-xs">scroll smoothly</span>
               </button>
             </div>
           </div>

@@ -2,7 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body{
+  /* background: radial-gradient(151.92% 127.02% at 15.32% 21.04%, rgba(46, 40, 52, 0.2) 0%, rgba(37, 56, 69, 0.04) 77.08%, rgba(2, 40, 74, 0) 100%), */
+}
 ::-webkit-scrollbar {
    width: 8px;
 }
