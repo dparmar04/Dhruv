@@ -6,6 +6,7 @@ import gsap from 'gsap';
 
 const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className = '' }) => {
   const { theme } = useTheme();
+  // eslint-disable-next-line no-unused-vars
   const animationDuration = `${speed}s`;
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
@@ -125,8 +126,12 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
               value={formData.name}
               onChange={handleChange}
               placeholder="Your name"
-              className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] capitalize"
-              color="black"
+              className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] capitalize
+               text-black dark:text-white 
+               placeholder:text-gray-400 dark:placeholder:text-gray-500"
+              labelProps={{
+                className: "text-black dark:text-white"
+              }}
             />
           </div>
           <div className="py-4">
@@ -137,8 +142,12 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
               value={formData.email}
               onChange={handleChange}
               placeholder="Your email"
-              className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px]"
-              color="black"
+              className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] 
+               text-black dark:text-white 
+               placeholder:text-gray-400 dark:placeholder:text-gray-500"
+              labelProps={{
+                className: "text-black dark:text-white"
+              }}
             />
           </div>
           <div className="py-4">
@@ -149,23 +158,27 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
               value={formData.message}
               onChange={handleChange}
               placeholder="Say hello!"
-              className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] capitalize"
-              color="black"
+              className="text-[18px] sm:text-[20px] md:text-[22px] lg:text-[24px] capitalize 
+               text-black dark:text-white 
+               placeholder:text-gray-400 dark:placeholder:text-white"
+              labelProps={{
+                className: "text-black dark:text-white"
+              }}
             />
           </div>
           <div
             className={`
-    rounded-full bg-clip-text inline-block 
-    ${disabled ? '' : 'animate-shine'} 
-    ${className} 
-    text-black/60 dark:text-[#b5b5b5a4]
-  `}
+              rounded-full bg-clip-text inline-block 
+              ${disabled ? '' : 'animate-shine'} 
+              ${className} 
+              text-black/60 dark:text-[#b5b5b5a4]
+            `}
             style={{
               backgroundImage: `
-      linear-gradient(120deg,
-        rgba(0, 0, 0, 0) 40%,
-        rgba(0, 0, 0, 0.7) 50%,
-        rgba(0, 0, 0, 0) 60%)`,
+              linear-gradient(120deg,
+              rgba(0, 0, 0, 0) 40%,
+              rgba(0, 0, 0, 0.7) 50%,
+              rgba(0, 0, 0, 0) 60%)`,
               backgroundSize: '200% 100%',
               WebkitBackgroundClip: 'text',
               animationDuration: '2s',
@@ -176,21 +189,17 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
               style={{
                 WebkitBackgroundClip: 'text',
                 backgroundImage: `
-        linear-gradient(120deg,
-          rgba(255, 255, 255, 0) 40%,
-          rgba(255, 255, 255, 0.8) 50%,
-          rgba(255, 255, 255, 0) 60%)
-      `,
+                linear-gradient(120deg,
+                rgba(255, 255, 255, 0) 40%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 0) 60%)
+                `,
               }}
             >
               <button
                 type="submit"
-                className="
-        p-3 text-lg sm:text-xl font-space 
-        transition-all duration-300 ease-in-out 
-        border rounded-3xl 
-        border-black/40 dark:border-[#b5b5b5a4]
-      "
+                className="p-3 text-lg sm:text-xl font-space transition-all duration-300 ease-in-out 
+                  border rounded-3xl border-black/40 dark:border-[#b5b5b5a4]"
                 disabled={loading}
               >
                 {loading ? 'Sending...' : text}
