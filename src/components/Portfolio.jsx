@@ -27,6 +27,12 @@ const Portfolio = () => {
 
   const projects = [
     {
+      title: "Softsell",
+      description: "Landing page for website who provide service of buy & sell licences with animations and responsive design, Using React.js and tailwindCSS to ensure a seamless user experience across devices",
+      image: "/photo4.png",
+      link: "https://softsellweb.vercel.app/"
+    },
+    {
       title: "Celestara",
       description: "Developed a visually engaging website with advanced animations and responsive design, leveraging React.js to ensure a seamless user experience across devices",
       image: "/photo1.png",
@@ -88,7 +94,7 @@ const Portfolio = () => {
       <div className='w-full h-full md:h-screen overflow-hidden'>
         <Circular />
       </div>
-
+    
       <div className='w-full bg-white dark:bg-black'>
         {/* Marquee */}
         <div className="overflow-hidden py-10">

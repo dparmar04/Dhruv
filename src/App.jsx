@@ -9,6 +9,7 @@ import CustomCursor from './components/CustomCursor'
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Contact from './components/Contact'
 import useLenis from './components/useLenis'
+import SkillsScene from './components/SkillsScene';
 
 
 
@@ -26,7 +27,7 @@ const App = () => {
       <BrowserRouter >
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<div><Hero /><About /></div>} />
+          <Route exact path="/" element={<div><Hero /><About /> <SkillsScene /></div>} />
           <Route path="/projects" element={<div> <Portfolio /></div>} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
