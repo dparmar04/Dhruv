@@ -60,32 +60,36 @@ const Navbar = () => {
       </h1>
 
       {/* Desktop Navigation */}
-      <ul className="hidden md:flex justify-between gap-x-16 overflow-hidden">
-        <li>
-          <a href="#about" data-link="About" className="relative group text-xl cursor-none"
-            onClick={(e) => {
-              e.preventDefault();
-              if (window.location.pathname !== "/") {
-                window.location.href = "/#about";
-              } else {
-                document.getElementById("about").scrollIntoView({ behavior: "smooth" });
-              }
-            }}
-          >
-            <span ref={aboutRef} className="inline-block">About</span>
-          </a>
-        </li>
-        <li>
-          <a href="/projects" data-link="Portfolio" className="relative group text-xl cursor-none">
-            <span ref={portfolioRef} className="inline-block">Portfolio</span>
-          </a>
-        </li>
-        <li>
-          <a href="/contact" data-link="Contact" className="relative group text-xl cursor-none">
-            <span ref={contactRef} className="inline-block">Contact</span>
-          </a>
-        </li>
-      </ul>
+      <div className='bg-white/10 backdrop-blur-sm py-5 px-10 rounded-full '>
+        <ul className="hidden md:flex justify-between gap-x-16 overflow-hidden">
+          <li>
+            <a href="#about" data-link="About" className="relative group text-xl cursor-none"
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.location.pathname !== "/") {
+                  window.location.href = "/#about";
+                } else {
+                  document.getElementById("about").scrollIntoView({ behavior: "smooth" });
+                }
+              }}
+            >
+              <span ref={aboutRef} className="inline-block">About</span>
+            </a>
+          </li>
+          <li>
+            <a href="/projects" data-link="Portfolio" className="relative group text-xl cursor-none">
+              <span ref={portfolioRef} className="inline-block">Portfolio</span>
+            </a>
+          </li>
+          <li>
+            <a href="/contact" data-link="Contact" className="relative group text-xl cursor-none">
+              <span ref={contactRef} className="inline-block">Contact</span>
+            </a>
+          </li>
+        </ul>
+
+
+      </div>
       <button
         onClick={toggleTheme}
         className="p-2 rounded-full border cursor-none dark:border-white border-black hover:scale-110 transition-transform"
