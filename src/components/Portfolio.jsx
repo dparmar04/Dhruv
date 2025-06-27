@@ -27,10 +27,16 @@ const Portfolio = () => {
 
   const projects = [
     {
-      title: "Softsell",
-      description: "Landing page for website who provide service of buy & sell licences with animations and responsive design, Using React.js and tailwindCSS to ensure a seamless user experience across devices",
+      title: "Ralph Lauren",
+      description: "A premium landing page inspired by Ralph Lauren's elegant style. Designed with smooth animations, responsive layouts, and modern aesthetics using React.js and TailwindCSS to deliver a luxurious user experience across all devices.",
+      image: "/photo5.png",
+      link: "https://poloralphlauren.netlify.app/"
+    },
+    {
+      title: "Hockerty",
+      description: "A stylish and responsive landing page built for Hockerty, a custom clothing brand. Developed using React.js and TailwindCSS with elegant transitions and a sleek layout to showcase high-end fashion appeal.",
       image: "/photo4.png",
-      link: "https://softsellweb.vercel.app/"
+      link: "https://hockerty.netlify.app/"
     },
     {
       title: "Celestara",
@@ -94,7 +100,7 @@ const Portfolio = () => {
       <div className='w-full h-full md:h-screen overflow-hidden'>
         <Circular />
       </div>
-    
+
       <div className='w-full bg-white dark:bg-black'>
         {/* Marquee */}
         <div className="overflow-hidden py-10">

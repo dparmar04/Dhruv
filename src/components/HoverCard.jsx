@@ -64,7 +64,7 @@ const HoverCard = ({ title, description }) => {
         }
       >
         <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-sm">{description}</p>
+        <p className="text-sm text-justify tracking-tight">{description}</p>
       </div>
     </div>
   );

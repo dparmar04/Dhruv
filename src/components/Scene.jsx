@@ -5,7 +5,7 @@ import { useRef } from 'react'
 import * as THREE from 'three';
 
 const Scene = () => {
-  let tex = useTexture("./image1.png");
+  let tex = useTexture("./Group2.png");
   let cyl = useRef(null);
 
   useFrame(() => {
