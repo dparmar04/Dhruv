@@ -49,21 +49,21 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="w-full text-black bg-white dark:bg-black dark:text-white  px-6 py-4 flex items-center justify-between relative transition-colors duration-500">
+    <nav className="w-full z-20 text-black bg-trasparent dark:text-white  px-6 py-4 flex items-center justify-between absolute transition-colors duration-500">
       {/* Logo */}
       <h1
         onClick={() => window.location.href = '/'}
-        className="text-4xl font-bold cursor-none"
+        className="text-4xl font-bold cursor-pointer"
         ref={titleRef}
       >
         Portfolio
       </h1>
 
       {/* Desktop Navigation */}
-      <div className='bg-white/10 backdrop-blur-sm py-5 px-10 rounded-full '>
+      <div className='hidden md:flex  bg-white/10 dark:bg-black/10 border border-black/30 dark:border-white/30 backdrop-blur-sm py-5 px-10 rounded-full '>
         <ul className="hidden md:flex justify-between gap-x-16 overflow-hidden">
           <li>
-            <a href="#about" data-link="About" className="relative group text-xl cursor-none"
+            <a href="#about" data-link="About" className="relative group text-xl cursor-pointer"
               onClick={(e) => {
                 e.preventDefault();
                 if (window.location.pathname !== "/") {
@@ -77,12 +77,12 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="/projects" data-link="Portfolio" className="relative group text-xl cursor-none">
+            <a href="/projects" data-link="Portfolio" className="relative group text-xl cursor-pointer">
               <span ref={portfolioRef} className="inline-block">Portfolio</span>
             </a>
           </li>
           <li>
-            <a href="/contact" data-link="Contact" className="relative group text-xl cursor-none">
+            <a href="/contact" data-link="Contact" className="relative group text-xl cursor-pointer">
               <span ref={contactRef} className="inline-block">Contact</span>
             </a>
           </li>
@@ -90,19 +90,24 @@ const Navbar = () => {
 
 
       </div>
-      <button
-        onClick={toggleTheme}
-        className="p-2 rounded-full border cursor-none dark:border-white border-black hover:scale-110 transition-transform"
-        aria-label="Toggle Theme"
-      >
-        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-      </button>
 
-      {/* Mobile Menu Button */}
-      <div className="md:hidden z-50 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
-        <div className={`w-8 h-1 rounded-md bg-black dark:bg-white mb-2 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2.5" : ""}`} />
-        <div className={`w-8 h-1 rounded-md bg-black dark:bg-white mb-2 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-        <div className={`w-8 h-1 rounded-md bg-black dark:bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2.5" : ""}`} />
+      <div className='flex items-center gap-10'>
+
+        <button
+          onClick={toggleTheme}
+          className="p-2 rounded-full border cursor-pointer dark:border-white border-black hover:scale-110 transition-transform"
+          aria-label="Toggle Theme"
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        </button>
+
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden z-50 cursor-pointer" onClick={() => setMenuOpen(!menuOpen)}>
+          <div className={`w-8 h-1 rounded-md bg-black dark:bg-white mb-2 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2.5" : ""}`} />
+          <div className={`w-8 h-1 rounded-md bg-black dark:bg-white mb-2 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+          <div className={`w-8 h-1 rounded-md bg-black dark:bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2.5" : ""}`} />
+        </div>
       </div>
 
       {/* Mobile Menu */}

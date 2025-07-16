@@ -173,7 +173,7 @@ const About = () => {
             onMouseLeave={() => setIsResumeHovered(false)}
           >
             <StarBorder className='cursor-none'>
-              Explore Project
+              See What I’ve Built
             </StarBorder>
           </div>
         </div>

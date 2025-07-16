@@ -17,3 +17,21 @@ body{
    background-color: #424242;
    border-radius: 12px;
 }
+@keyframes fadeRoll {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.98);
+  }
+}
+
+.fade-roll {
+  animation: fadeRoll 1.5s ease-in-out forwards;
+}

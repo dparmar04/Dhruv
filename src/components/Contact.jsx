@@ -4,7 +4,7 @@ import { Input } from "@material-tailwind/react";
 import { useTheme } from './ThemeContext';
 import gsap from 'gsap';
 
-const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className = '' }) => {
+const Contact = ({ disabled = false, speed = 5, text = 'Let’s talk ideas 🚀', className = '' }) => {
   const { theme } = useTheme();
   // eslint-disable-next-line no-unused-vars
   const animationDuration = `${speed}s`;
@@ -86,7 +86,7 @@ const Contact = ({ disabled = false, speed = 5, text = 'Send Message', className
   };
 
   return (
-    <div className="w-full h-[90vh] bg-white dark:bg-black flex flex-wrap lg:flex-nowrap flex-col lg:flex-row justify-between items-center transition-colors duration-500">
+    <div className="w-full h-screen bg-white dark:bg-black flex flex-wrap lg:flex-nowrap flex-col lg:flex-row justify-between items-center transition-colors duration-500">
       {/* Title Section */}
       <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl text-gray-800 dark:text-white m-6 lg:m-10 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[40%] text-center lg:text-left">
         <div
