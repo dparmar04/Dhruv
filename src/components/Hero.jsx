@@ -291,53 +291,54 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
   }, [isLoaded]); // This effect now correctly depends only on isLoaded
 
   return (
-    <div className='w-full relative h-screen flex flex-row'>
-      <div className='w-full overflow-hidden relative h-screen flex flex-row bg-white bg-[radial-gradient(100%_50%_at_50%_20%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_70%,rgba(0,163,255,0)_100%)] text-white  transition-colors duration-500'>
+    <div className="w-full relative h-screen flex flex-row overflow-hidden">
+      <div className='w-full relative h-screen flex flex-row'>
 
-        {/* Conditionally render the Loader based on showLoader state */}
-        {showLoader && <Loader onComplete={handleLoadingComplete} />}
+        <div className='w-full overflow-hidden relative h-screen flex flex-row bg-white dark:bg-black text-black dark:text-white transition-colors duration-500'>
+          <div className="absolute top-0 right-0 h-[500px] w-[500px] -translate-x-[30%] translate-y-[20%] rounded-full bg-[rgba(173,109,244,0.5)] dark:opacity-50 opacity-100 blur-[80px] dark:blur-[100px] transition-colors duration-500">
+          </div>
 
-        {/* Render Background and content only when isLoaded is true */}
-        {isLoaded && (
-          <>
-            <div className="w-full h-screen absolute top-0 left-0">
-              {/* <Background /> */}
-              <DarkVeil />
-            </div>
 
-            <div className='relative greeting w-full text-white h-full font-bold flex flex-col items-start justify-center text-left pl-4 sm:pl-12 md:pl-28 z-10'>
-              {/* Responsive Heading */}
-              <h1 className='text-5xl h-max overflow-hidden sm:text-7xl md:text-8xl lg:text-9xl' ref={headingRef}>
-                Hi,I&apos;m Dhruv
-              </h1>
+          {/* Conditionally render the Loader based on showLoader state */}
+          {showLoader && <Loader onComplete={handleLoadingComplete} />}
 
-              {/* Responsive Subheading */}
-              <div
-                className={`text-[#b5b5b5a4] bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
-                style={{
-                  backgroundImage: 'linear-gradient(to bottom, rgba(0, 163, 255, 1), rgba(0, 163, 255, 0.3), rgba(255, 255, 255, 0))',
-                  backgroundSize: '200% 100%',
-                  WebkitBackgroundClip: 'text',
-                  animationDuration: '2s',
-                }}
-              >
-                <p className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase my-3 h-max overflow-hidden' ref={subHeadingRef}>
-                  <span className="inline-block">Front-end Developer</span>
-                </p>
+          {/* Render Background and content only when isLoaded is true */}
+          {isLoaded && (
+            <>
+              <div className='relative greeting w-full text-black dark:text-white  h-full font-bold flex flex-col items-start justify-center text-left pl-4 sm:pl-12 md:pl-28 z-10'>
+                {/* Responsive Heading */}
+                <h1 className='text-5xl h-max overflow-hidden sm:text-7xl md:text-8xl lg:text-9xl' ref={headingRef}>
+                  Hi,I&apos;m Dhruv
+                </h1>
+
+                {/* Responsive Subheading */}
+                <div
+                  className={`text-[#565353a4] dark:text-[#b5b5b5a4] bg-clip-text inline-block ${disabled ? '' : 'animate-shine'} ${className}`}
+                  style={{
+                    backgroundImage: 'linear-gradient(to bottom, rgba(0, 163, 255, 1), rgba(0, 163, 255, 0.3), rgba(255, 255, 255, 0))',
+                    backgroundSize: '200% 100%',
+                    WebkitBackgroundClip: 'text',
+                    animationDuration: '2s',
+                  }}
+                >
+                  <p className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase my-3 h-max overflow-hidden' ref={subHeadingRef}>
+                    <span className="inline-block">Front-end Developer</span>
+                  </p>
+                </div>
+
+                {/* Responsive Scroll Indicator */}
+                <div className="absolute bottom-32 sm:bottom-14 left-1/2 transform -translate-x-1/2 w-max justify-center items-center flex flex-col gap-y-2 sm:hidden md:flex">
+                  <CircularText
+                    text="-SCROLL-SMOOTHLY"
+                    onHover="speedUp"
+                    spinDuration={20}
+                    className="custom-class"
+                  />
+                </div>
               </div>
-
-              {/* Responsive Scroll Indicator */}
-              <div className="absolute bottom-32 sm:bottom-14 left-1/2 transform -translate-x-1/2 w-max justify-center items-center flex flex-col gap-y-2 sm:hidden md:flex">
-                <CircularText
-                  text="-SCROLL-SMOOTHLY"
-                  onHover="speedUp"
-                  spinDuration={20}
-                  className="custom-class"
-                />
-              </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

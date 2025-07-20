@@ -13,39 +13,16 @@ const Navbar = () => {
   const menuRef = useRef(null);
 
   useEffect(() => {
-
-    // Helper function to animate text
-    const animateText = (ref) => {
-      const text = ref.current.textContent;
-      ref.current.textContent = '';
-      const chars = text.split('').map(char => {
-        const span = document.createElement('span');
-        span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.display = 'inline-block';
-        ref.current.appendChild(span);
-        return span;
+    gsap.fromTo(titleRef.current, {
+      opacity: 0,
+      y: 10,
+      duration: 1,
+      ease: "power2.out"
+    }
+      , {
+        opacity: 1,
+        y: 0
       });
-      return chars;
-    };
-
-    const titleChars = animateText(titleRef);
-
-    // Animate title with wave effect
-    gsap.to(titleChars, {
-      y: -10,
-      stagger: {
-        each: 0.05,
-        repeat: 1,
-        yoyo: true,
-        onComplete: () => {
-          gsap.to(titleChars, { y: 0, duration: 1, ease: "power2.out" });
-        }
-      },
-      ease: "sine.inOut",
-      duration: 0.5
-    });
-
-
   }, []);
 
   return (
@@ -112,7 +89,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div ref={menuRef} className={`fixed top-0 left-0 w-full h-screen z-40 bg-white dark:bg-black flex flex-col items-center justify-center transform transition-transform duration-500 ${menuOpen ? "translate-y-0" : "-translate-y-full"}`}>
+      <div ref={menuRef} className={`fixed top-0 left-0 w-full h-screen z-40 bg-white/20 backdrop-blur-md dark:bg-black/20 flex flex-col items-center justify-center transform transition-transform duration-500 ${menuOpen ? "translate-y-0" : "-translate-y-full"}`}>
         <ul className="flex flex-col gap-8 text-3xl text-center">
           <li><a href="/" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>About</a></li>
           <li><a href="/projects" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>Portfolio</a></li>

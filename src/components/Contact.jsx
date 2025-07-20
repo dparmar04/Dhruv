@@ -86,7 +86,10 @@ const Contact = ({ disabled = false, speed = 5, text = 'Let’s talk ideas 🚀'
   };
 
   return (
-    <div className="w-full h-screen bg-white dark:bg-black flex flex-wrap lg:flex-nowrap flex-col lg:flex-row lg:justify-between justify-center items-center transition-colors duration-500">
+    <div className="w-full h-screen bg-white dark:bg-black 
+    bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.5),rgba(255,255,255,0))] flex flex-wrap lg:flex-nowrap flex-col lg:flex-row lg:justify-between justify-center items-center transition-colors duration-500">
+
+
       {/* Title Section */}
       <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl text-gray-800 dark:text-white m-6 lg:m-10 w-[90%] sm:w-[80%] md:w-[70%] lg:w-[40%] text-center lg:text-left">
         <div

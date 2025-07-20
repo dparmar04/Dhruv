@@ -185,7 +185,10 @@ const Portfolio = () => {
   };
 
   return (
-    <div className="dark:bg-black bg-white min-h-screen transition-colors duration-500">
+    <div className="dark:bg-black bg-white bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.20)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] min-h-screen transition-colors duration-500">
+
+      {/* <div class="absolute top-0 z-[-2] h-screen w-screen bg-white "></div> */}
+
       {/* React Three Fiber component for background visual flair */}
       <div className='w-full h-full md:h-screen md:pt-16 overflow-hidden'>
         <Circular />
