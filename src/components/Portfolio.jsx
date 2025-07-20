@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'; // Import useState
 import Circular from './Circular'; // Assuming this is your React Three Fiber component
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import CurvedLoop from './CurvedLoop.jsx';
 import StarBorder from './StarBorder'; // Assuming this is your button component
 // Removed unused imports: StickyScroll, HoverCard, ImageGlowCard
 // motion from framer-motion is kept in case it's used by other components like StarBorder or Circular,
@@ -186,33 +187,14 @@ const Portfolio = () => {
   return (
     <div className="dark:bg-black bg-white min-h-screen transition-colors duration-500">
       {/* React Three Fiber component for background visual flair */}
-      <div className='w-full h-full md:h-screen overflow-hidden'>
+      <div className='w-full h-full md:h-screen md:pt-16 overflow-hidden'>
         <Circular />
       </div>
 
       <div className='w-full bg-white dark:bg-black'>
-        {/* Marquee section for "FEATURED WORK" */}
-        <div className="overflow-hidden py-10">
-          <div className="marquee-container relative whitespace-nowrap transform -rotate-3">
-            <div className="inline-flex items-center space-x-8 dark:bg-white py-4 px-4 sm:px-6 md:px-8">
-              {[1, 2, 3, 4, 5, 6].map((_, i) => (
-                <div
-                  key={i}
-                  className="marquee flex items-center flex-shrink-0 gap-3 sm:gap-4"
-                >
-                  <h1 className="text-black text-2xl sm:text-3xl md:text-4xl font-bold">
-                    FEATURED WORK
-                  </h1>
-                  <img
-                    src="/Arrow.svg"
-                    alt="Arrow"
-                    className="w-6 sm:w-8 md:w-10 rotate-180"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+
+        {/* Marquee for "FEATURED WORK" */}
+        <CurvedLoop marqueeText="Explore Work 🚀" />
 
         {/* Portfolio Projects Section - Each project is now an immersive, animated section */}
         <div className="relative h-full mt-10 px-4 sm:px-6 lg:px-8">

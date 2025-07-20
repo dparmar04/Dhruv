@@ -60,14 +60,15 @@ const Navbar = () => {
       </h1>
 
       {/* Desktop Navigation */}
-      <div className='hidden md:flex  bg-white/10 dark:bg-black/10 border border-black/30 dark:border-white/30 backdrop-blur-sm py-5 px-10 rounded-full '>
+      <div className='hidden md:flex bg-white/10 dark:bg-white/10 border border-white/20 backdrop-blur-md rounded-full bg-clip-padding px-5 py-4'>
+
         <ul className="hidden md:flex justify-between gap-x-16 overflow-hidden">
           <li>
-            <a href="#about" data-link="About" className="relative group text-xl cursor-pointer"
+            <a href="/" data-link="About" className="relative group text-xl cursor-pointer "
               onClick={(e) => {
                 e.preventDefault();
                 if (window.location.pathname !== "/") {
-                  window.location.href = "/#about";
+                  window.location.href = "/";
                 } else {
                   document.getElementById("about").scrollIntoView({ behavior: "smooth" });
                 }
@@ -77,12 +78,12 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="/projects" data-link="Portfolio" className="relative group text-xl cursor-pointer">
+            <a href="/projects" data-link="Portfolio" className="relative group text-xl cursor-pointer ">
               <span ref={portfolioRef} className="inline-block">Portfolio</span>
             </a>
           </li>
           <li>
-            <a href="/contact" data-link="Contact" className="relative group text-xl cursor-pointer">
+            <a href="/contact" data-link="Contact" className="relative group text-xl cursor-pointer ">
               <span ref={contactRef} className="inline-block">Contact</span>
             </a>
           </li>
@@ -95,10 +96,10 @@ const Navbar = () => {
 
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-full border cursor-pointer dark:border-white border-black hover:scale-110 transition-transform"
+          className="p-3 rounded-full border border-white/30 backdrop-blur-md bg-white/10 dark:bg-white/10 bg-clip-padding hover:scale-110 transition-transform"
           aria-label="Toggle Theme"
         >
-          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
         </button>
 
 
@@ -113,7 +114,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div ref={menuRef} className={`fixed top-0 left-0 w-full h-screen z-40 bg-white dark:bg-black flex flex-col items-center justify-center transform transition-transform duration-500 ${menuOpen ? "translate-y-0" : "-translate-y-full"}`}>
         <ul className="flex flex-col gap-8 text-3xl text-center">
-          <li><a href="#about" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>About</a></li>
+          <li><a href="/" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>About</a></li>
           <li><a href="/projects" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>Portfolio</a></li>
           <li><a href="/contact" className="cursor-pointer uppercase" onClick={() => setMenuOpen(false)}>Contact</a></li>
         </ul>

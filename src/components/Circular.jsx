@@ -8,7 +8,7 @@ const CameraAdjuster = () => {
 
   useEffect(() => {
     if (size.width < 768) {
-      camera.fov = 35;
+      camera.fov = 30;
     } else {
       camera.fov = 20;
     }
