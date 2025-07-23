@@ -153,7 +153,7 @@ const About = () => {
               transition: 'transform 0.09s ease-out',
               cursor: 'none'
             }}
-            onClick={() => window.open('https://acrobat.adobe.com/id/urn:aaid:sc:AP:9e85e6b3-06dd-47e9-bbae-b382b10669c7', '_blank')}
+            onClick={() => window.open('https://acrobat.adobe.com/id/urn:aaid:sc:AP:8bcede7b-5e3d-4426-a96a-37267556333b', '_blank')}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >

@@ -263,7 +263,7 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
 
 
     // Get subheading text and create spans for each character
-    const subHeadingText = "Front-end Developer";
+    const subHeadingText = "Full Stack Developer";
     if (subHeadingRef.current) { // Ensure ref is not null
       subHeadingRef.current.innerHTML = '';
       const subHeadingChars = subHeadingText.split('').map(char => {
@@ -322,7 +322,7 @@ const Hero = ({ disabled = false, speed = 1, className = '' }) => {
                   }}
                 >
                   <p className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl uppercase my-3 h-max overflow-hidden' ref={subHeadingRef}>
-                    <span className="inline-block">Front-end Developer</span>
+                    <span className="inline-block">Full Stack Developer</span>
                   </p>
                 </div>
 

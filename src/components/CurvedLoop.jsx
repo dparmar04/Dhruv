@@ -137,7 +137,7 @@ const CurvedLoop = ({
           />
         </defs>
         {ready && (
-          <text xmlSpace="preserve" className={`fill-white ${className ?? ""}`}>
+          <text xmlSpace="preserve" className={`dark:fill-white fill-black ${className ?? ""}`}>
             <textPath href={`#${pathId}`} xmlSpace="preserve">
               {Array.from({ length: repeats }).map((_, i) => (
                 <tspan
