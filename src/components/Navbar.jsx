@@ -37,7 +37,7 @@ const Navbar = () => {
       </h1>
 
       {/* Desktop Navigation */}
-      <div className='hidden md:flex bg-white/10 dark:bg-white/10 border border-white/20 backdrop-blur-md rounded-full bg-clip-padding px-5 py-4'>
+      <div className='hidden md:flex bg-black/5 border-black/20  dark:bg-white/10 border dark:border-white/20 backdrop-blur-md rounded-full bg-clip-padding px-10 py-4'>
 
         <ul className="hidden md:flex justify-between gap-x-16 overflow-hidden">
           <li>
@@ -73,7 +73,7 @@ const Navbar = () => {
 
         <button
           onClick={toggleTheme}
-          className="p-3 rounded-full border border-white/30 backdrop-blur-md bg-white/10 dark:bg-white/10 bg-clip-padding hover:scale-110 transition-transform"
+          className="p-3 rounded-full border border-black/20 backdrop-blur-md bg-black/5 dark:bg-white/10 bg-clip-padding hover:scale-110 transition-transform"
           aria-label="Toggle Theme"
         >
           {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
